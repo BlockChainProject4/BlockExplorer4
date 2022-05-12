@@ -1,0 +1,10 @@
+.FooterContainer {
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: chartreuse;
+    width: 100%;
+    top: 0px;
+    z-index: 5;
+    color: red;
+}
