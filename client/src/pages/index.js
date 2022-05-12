@@ -8,10 +8,20 @@ const Index = () => {
     const [test, setTest] = useState("");
 
     const handleClick = async () => {
-        const result = await axios.get('http://localhost:3001')
+
+        const result = await axios.get('http://localhost:3001/mine')
+        console.log(result.data)
         setTest(result.data);
-        // alert(result.data)
     }
+    //     const result = await axios.post('http://localhost:3001/mine', {
+    //         Block : "info blabla"
+    //     }, {
+    //         withCredentials : true }
+    //         ).then ( (res) => {console.log(res)}
+    //         ).catch( (error) => {console.log(error)}
+    //         )
+    //         setTest(result);
+    // }
 
     return(
         <div>
