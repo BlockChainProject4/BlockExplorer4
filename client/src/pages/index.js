@@ -15,6 +15,8 @@ const Index = () => {
         }, 1000, 5);
 
         await axios.post('http://localhost:3001/mineBlock', data)
+        console.log(data);
+        // alert(result.data)
     }
 
     return(
