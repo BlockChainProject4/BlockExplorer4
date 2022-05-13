@@ -13,10 +13,8 @@ function User({ user , created_date}) {
                 </p>
             </div>
             {/* <div className='tradListContainer'>
-                
             </div>
             <div className='tradListTradinfo'>
-                
             </div> */}
         </div>
         );
