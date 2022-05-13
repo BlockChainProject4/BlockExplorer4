@@ -1,17 +1,20 @@
 import React from 'react'
 import './main.css'
-import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../component/Global/Header';
+import Footer from '../component/Global/Footer';
+import UserTradList from '../component/CoinList/UserTradList';
+import Index from './index';
 
 const Main = () => {
   return (
     <div >
-      <div className='main_container'>
-            <h1>
-                BLOCK CHAIN BLOCKEXPLORE 만들기
-            </h1>
-            <Button variant="danger">Danger</Button> <Button variant="info">Info</Button>{' '}
-      </div>
+      <Header/>
+        <div className='main_container'>
+          <UserTradList/>
+          <Index />
+        </div>
+      <Footer/>
     </div>
   )
 }
