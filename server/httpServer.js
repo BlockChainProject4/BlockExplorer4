@@ -29,6 +29,10 @@ const initHttpServer = (myHttpPort) => {
         res.send(mineBlock(req.body.data));
     })
 
+    // app.post('/reminBlcok', (req,res) => {
+    //     res.send()
+    // })
+
     app.get('/peers', (req, res) => {
         res.send(getPeers());
     })

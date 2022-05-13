@@ -1,26 +1,19 @@
-import Index from './pages';
+import React from 'react'; 
+import {  Routes, Route } from 'react-router-dom';
 import './App.css';
 import Main from './pages/Main.js'
-import Header from './component/Global/Header.js';
-import Footer from './component/Global/Footer.js';
-import UserTradList from './component/CoinList/UserTradList'
+import Loginpage from './pages/Loginpage';
+import Mypage from './pages/Mypage';
 
 
 function App() {
     return (
         <div className='container'>
-            <div>
-                <Header/>
-            </div>
-            <div>
-                <Main />
-                <UserTradList/>
-                <Index />
-
-            </div>
-            <div>
-                <Footer />
-            </div>
+            <Routes>
+                <Route path='/' element={<Main/>}></Route>
+                <Route path='/login' element={<Loginpage/>}></Route>
+                <Route path='/mypage' element={<Mypage/>}></Route>
+            </Routes>
 
         </div>
 

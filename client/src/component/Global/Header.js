@@ -9,11 +9,11 @@ const Header = () => {
             <header>
             <Navbar bg="primary" variant="dark">
                 <Container>
-                <Navbar.Brand href="#home">Block Explore</Navbar.Brand>
+                <Navbar.Brand Link="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/login">LoginPage</Nav.Link>
+                    <Nav.Link href="/mypage">MyPage</Nav.Link>
                 </Nav>
                 </Container>
         </Navbar>
