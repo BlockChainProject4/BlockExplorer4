@@ -10,8 +10,11 @@ const Index = () => {
     })
 
     const handleClick = async () => {
+        setInterval(() => {
+
+        }, 1000, 5);
+
         await axios.post('http://localhost:3001/mineBlock', data)
-        // alert(result.data)
     }
 
     return(
