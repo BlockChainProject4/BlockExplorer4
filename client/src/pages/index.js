@@ -15,7 +15,7 @@ const Index = () => {
 
     return(
         <div>
-        <Button variant="danger" onClick={handleClick}>채굴</Button>
+        <Button variant="danger" onClick={handleClick}>채굴버튼</Button>
         <p>{test}</p>
         </div>
         // <button onClick={handleClick}>채굴</button>
