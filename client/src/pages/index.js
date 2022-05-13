@@ -24,7 +24,7 @@ const Index = () => {
 
         for(let i = 0; i < mineCount.value; i++ ) {
  
-       await axios.post('http://localhost:3001/mineBlock', data)
+       await axios.post('http://localhost:3001/blocks/mineBlock', data)
     }
 }
     

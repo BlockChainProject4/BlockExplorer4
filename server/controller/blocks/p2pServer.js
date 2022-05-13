@@ -1,8 +1,10 @@
 // 다른 노드와 통신을 위한 서버
 import WebSocket from 'ws'
 import { WebSocketServer } from 'ws'
+// import { getBlocks, getLatestBlock, createBlock, addBlock, replaceBlockchain } from './block.js'
+// import { getTransactionPool, addToTransactionPool } from './transcation.js'
 import { getBlocks, getLatestBlock, createBlock, addBlock, replaceBlockchain } from './block.js'
-import { getTransactionPool, addToTransactionPool } from './transcation.js'
+import { getTransactionPool, addToTransactionPool } from '../transaction/transcation.js'
 
 const MessageType = {
     // RESPONSE_MESSAGE : 0,
