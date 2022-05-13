@@ -5,18 +5,19 @@ import {React, useState} from 'react';
 
 const Index = () => {
 
-    const [test, setTest] = useState("");
+    const [data, setData] = useState({
+        data:"123"
+    })
 
     const handleClick = async () => {
-        const result = await axios.get('http://localhost:3001')
-        setTest(result.data);
+        await axios.post('http://localhost:3001/mineBlock', data)
         // alert(result.data)
     }
 
     return(
         <div>
         <Button variant="danger" onClick={handleClick}>채굴버튼</Button>
-        <p>{test}</p>
+
         </div>
         // <button onClick={handleClick}>채굴</button>
         

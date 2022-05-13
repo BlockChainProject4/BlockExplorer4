@@ -38,7 +38,7 @@ const calculateHash = (index, data, timestamp, previousHash, difficulty, nonce) 
 // 16진수 1자리 -> 2진수 4자리 256개의 0과 1로 표현
 
 const createGenesisBlock = () => {
-    const genesisBlock = new Block(0, 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks', 0, 0, 0, 1, 0);
+    const genesisBlock = new Block(0, 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks', 0, 0, 0, 20, 0);
     
     genesisBlock.hash = calculateHash(genesisBlock.index, genesisBlock.data, genesisBlock.timestamp,
                         genesisBlock.previousHash, genesisBlock.difficulty, genesisBlock.nonce);
@@ -77,10 +77,10 @@ const addBlock = (newBlock, previousBlock) => {
         blocks.push(newBlock);
 
         // 사용되지 않은 txOuts를 셋팅
-        processTransaction(newBlock.data, getUnspentTxOuts(), newBlock.index);
+        // processTransaction(newBlock.data, getUnspentTxOuts(), newBlock.index);
         
         // 트랜잭션 풀 업데이트
-        updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
+        // updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
 
         return true;
     }
