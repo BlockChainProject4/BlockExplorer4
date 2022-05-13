@@ -1,9 +1,9 @@
 import mysql from 'mysql2/promise'; // /promise 객체로 반환해준다는 의미이다.
 
 const pool = mysql.createPool({ //접속가능 횟수 조절
-  host:'127.0.0.1',
-  user: 'root',
-  password : 'dlgPdls3^^',
+  host:'101.101.208.82',
+  user: 'jh',
+  password : '1234',
   database : 'blockexplorer'
 })
 
