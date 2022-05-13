@@ -10,8 +10,7 @@ const Index = () => {
     })
 
     const handleClick = async () => {
-        await axios.post('http://localhost:3001/mineBlock', data)
-        console.log(data);
+        await axios.post('http://localhost:3001/blocks/mineBlock', data)
         // alert(result.data)
     }
 

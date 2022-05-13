@@ -11,7 +11,9 @@
 import CryptoJS from 'crypto-js';
 import random from 'random';
 // import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, processTransaction, updateTransactionPool } from './transcation.js'
-import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from './transcation.js'
+// import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from './transcation.js.js'
+import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from '../transaction/transcation.js'
+// import { getPublicKeyFromWallet } from './wallet.js'
 import { getPublicKeyFromWallet } from './wallet.js'
 
 const BLOCK_GENERATION_INTERVAL = 10;       // SECOND(테스트할때) 블록 생성 주기 
@@ -283,4 +285,4 @@ const getLatestBlock = () => {
 }
 genesisBlock.data = getCoinbaseTransaction(getPublicKeyFromWallet(), getLatestBlock().index + 1) // coinbasetransaction
 
-export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain }
+export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain, blocks}

@@ -3,9 +3,8 @@
 import cors from "cors"
 import express from 'express'
 import bodyParser from 'body-parser'
-import { getBlocks, createBlock } from './block.js'
-import { connectionToPeer, getPeers, mineBlock } from './p2pServer.js'
-import { getPublicKeyFromWallet } from './wallet.js'
+import blocks from './router/blocks.js'
+import transactions from './router/transaction.js'
 
 // 초기화 함수
 const initHttpServer = (myHttpPort) => {
@@ -14,47 +13,12 @@ const initHttpServer = (myHttpPort) => {
     app.use(cors())
 
     app.get('/', (req, res) => {
-        res.send('Hello, World!');
+        res.send('기본페이지 입니다.')
     })
 
-    app.get('/blocks', (req, res) => {
-        res.send(getBlocks());
-    })
-
-    app.post('/createBlock', (req, res) => {
-        res.send(createBlock(req.body.data));        
-    })
-
-    app.post('/mineBlock', (req, res) => {
-        res.send(mineBlock(req.body.data));
-    })
-
-    // app.post('/reminBlcok', (req,res) => {
-    //     res.send()
-    // })
-
-    app.get('/peers', (req, res) => {
-        res.send(getPeers());
-    })
-
-    app.post('/addPeer', (req, res) => {
-        console.log('/addPeer : ',req.body.message);
-        res.send(connectionToPeer(req.body.data));
-    })
-
-    app.post('/sendTransaction', (req,res) => {
-        // transaction out에 필요한 데이터
-        const address = req.body.address;
-        const amount = req.body.amount;
-
-        res.send(sendTransaction(address, amount)); 
-    })
-
-    app.get('/address', (req, res) => {
-        const address = getPublicKeyFromWallet();
-        res.send( {'address' : address });
-        // res.send( `address : ${ address }`);
-    })
+    app.use('/blocks',blocks)
+    
+    app.use('/transactions',transactions)
 
     app.listen(myHttpPort, () => {
         console.log('listening httpServer Port : ', myHttpPort);
