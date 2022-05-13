@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
 import _ from 'lodash';     // 배열에서 할 수 있는 것들과 거의 유사한다. 깊은복사와 관련된 것들을 유용하게 사용할 수 있다.
-import { getPublicKeyFromWallet, getPrivateKeyFromWallet } from './wallet.js';
+// import { getPublicKeyFromWallet, getPrivateKeyFromWallet } from '../blocks/wallet.js';
+import { getPublicKeyFromWallet, getPrivateKeyFromWallet } from '../blocks/wallet.js';
 
 const COINBASE_AMOUNT = 50;
 
