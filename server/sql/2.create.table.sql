@@ -8,3 +8,29 @@ CREATE TABLE `blockInfo` (
   `difficulty` INT(11) default 0  NOT NULL,
   `nonce` INT(11) default 0  NOT NULL
 )
+
+
+
+
+-- [
+--   {
+--     idx:0,
+--     subject:'asdf',
+--     content:'asdfasd'
+--   },
+--   {
+--     idx:0,
+--     subject:'asdf',
+--     content:'asdfasd'
+--   },
+-- ]
+
+
+블록 구성
+[헤더]
+- version / string
+- index / number
+- previouseHash / string
+- time / number
+- merkleRoot / string
+- body / object
