@@ -285,4 +285,4 @@ const getLatestBlock = () => {
 }
 genesisBlock.data = getCoinbaseTransaction(getPublicKeyFromWallet(), getLatestBlock().index + 1) // coinbasetransaction
 
-export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain }
+export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain, blocks}
