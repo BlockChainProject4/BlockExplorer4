@@ -11,7 +11,6 @@
 import CryptoJS from 'crypto-js';
 import random from 'random';
 // import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, processTransaction, updateTransactionPool } from './transcation.js'
-// import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from './transcation.js.js'
 import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from '../transaction/transcation.js'
 // import { getPublicKeyFromWallet } from './wallet.js'
 import { getPublicKeyFromWallet } from './wallet.js'
@@ -131,7 +130,6 @@ const isValidNewBlock = (newBlock, previousBlock) => {
 const hashMatchDifficulty = (hash, difficulty) => {
     const binaryHash = hexToBinary(hash);
     const requiredPrefix = '0'.repeat(difficulty);
-
     return binaryHash.startsWith(requiredPrefix);
 }
 
@@ -156,8 +154,7 @@ const hexToBinary = (hex) => {
             return null;
         }
     }
-
-    return binary;
+    return binary;   
 }
 
 // 
@@ -212,11 +209,11 @@ const replaceBlockchain = (receiveBlockchain) => {
             blocks = receiveBlockchain;
 
             // 사용되지 않은 txOuts를 셋팅
-            const latestBlock = getLatestBlock();
-            processTransaction(latestBlock.data, getUnspentTxOuts(), latestBlock.index);
+            // const latestBlock = getLatestBlock();
+            // processTransaction(latestBlock.data, getUnspentTxOuts(), latestBlock.index);
 
             // 트랜잭션 풀 업데이트
-            updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
+            // updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
         }
         else
         {
@@ -284,5 +281,6 @@ const getLatestBlock = () => {
     return blocks[blocks.length - 1];
 }
 genesisBlock.data = getCoinbaseTransaction(getPublicKeyFromWallet(), getLatestBlock().index + 1) // coinbasetransaction
+
 
 export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain, blocks}

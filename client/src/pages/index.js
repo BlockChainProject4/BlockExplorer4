@@ -10,7 +10,7 @@ const Index = () => {
     })
     const [mineCount, setMineCount] = useState()
     const handleChange = (e) => {
-        let {name, value} = e.target;
+        let {value} = e.target;
         
         setMineCount({
             ...mineCount,
@@ -21,10 +21,15 @@ const Index = () => {
 
 
     const handleClick = async () => {
-
-        for(let i = 0; i < mineCount.value; i++ ) {
- 
+        if(mineCount.value <= 0) {
+            alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
+        } else {
+            for(let i = 0; i < mineCount.value; i++ ) {
+            alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
        await axios.post('http://localhost:3001/blocks/mineBlock', data)
+    //    await axios.post('http://13.125.253.189:3000//blocks/mineBlock', data)
+            alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
+        }
     }
 }
     
