@@ -54,7 +54,7 @@ const CreateWallet = () => {
             <label>사용할 비밀번호를 입력 해 주세요</label>
             <br />
             <input type="password" name='passwd' value={passwd} onChange={handleChange}/>
-            <Button size="lg" variant="dark" onClick={handleSubmit}>지갑 생성</Button>
+            <button onClick={handleSubmit} >지갑 생성</button>
         </div>
         <Footer/>
     </div>

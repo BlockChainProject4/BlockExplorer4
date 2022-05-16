@@ -11,7 +11,7 @@ const Header = () => {
             <header>
             <Navbar  variant="dark">
                 <Container>
-                < SiHiveBlockchain className='footericon' color='white' size={30} />
+                < SiHiveBlockchain className='headericon' color='white' size={30} />
                 <Navbar.Brand className='navtext' href="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
