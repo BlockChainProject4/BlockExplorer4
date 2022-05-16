@@ -4,7 +4,6 @@ import axios from 'axios'
 import {React, useState} from 'react';
 
 const Index = () => {
-
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
