@@ -113,7 +113,7 @@ router.use("/login", async (req, res) => {
   }
 
   if(ValidLogin()) {
-    const token = createToken({passwd})
+    const token = publickey
     res.cookie("token", token).status(200).send({message: "로그인 성공"})
   } else {
     res.status(404).send({

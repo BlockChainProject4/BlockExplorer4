@@ -32,6 +32,8 @@ const handleSubmit = async (e) => {
   })
 
   const reqMSG = result.data.message;
+  const msg = result.data.id;
+  console.log(msg)
   if(reqMSG == "로그인 성공"){
     navigate('/')
   }
@@ -50,11 +52,11 @@ useEffect(() => {
             <br />
             <label>지갑 주소</label>
             <br />
-            <input type="text" placeholder='지갑주소를 입력해 주세요...' name="publickey" onChange={handleChange}/>
+            <input type="text" placeholder='지갑주소를 입력해 주세요…' name="publickey" onChange={handleChange}/>
             <br />
             <label>비밀 번호</label>
             <br />
-            <input type="password" placeholder='비밀번호를 입력해 주세요...' name="passwd" onChange={handleChange} />
+            <input type="password" placeholder='비밀번호를 입력해 주세요…' name="passwd" onChange={handleChange} />
             <br />
             <button onClick={handleSubmit}>Login</button>
         </div>

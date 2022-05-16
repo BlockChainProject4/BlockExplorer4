@@ -1,9 +1,14 @@
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
+import { useCookies } from 'react-cookie';
 
 const Index = () => {
+   
+    const [cookies] = useCookies("");
+    console.log(cookies.token)
+
 
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
@@ -60,7 +65,6 @@ const Index = () => {
     const BlockInfo = "블록 번호 : " + bringData.idx + "\n" + "블록 생성 시간 : " + bringData.timestamps + "\n" + "블록 해시 : " + bringData.hashs + "\n" + "이전 블록 해시 : " + bringData.previousHash + "\n"+ "채굴 난이도 : " + bringData.difficulty + "\n" + "Nonce 값 : " + bringData.nonce
 
 
-
     return(
         <>
             <span>
@@ -75,7 +79,6 @@ const Index = () => {
             <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
             </span>
             <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "블록정보를 입력 해 주세요.." : BlockInfo}></textarea></span>
-
         </>       
     )
 }
