@@ -6,10 +6,10 @@ import Footer from '../component/Global/Footer';
 import UserTradList from '../component/CoinList/UserTradList';
 import Index from './index';
 
-const Main = () => {
+const Main = ({ isLogin, setIsLogin }) => {
   return (
     <div >
-      <Header/>
+      
         <div className='main_container'>
           <UserTradList/>
           <Index />

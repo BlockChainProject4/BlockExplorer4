@@ -44,7 +44,6 @@ const CreateWallet = () => {
 
   return (
     <div>
-        <Header/>
         <div>
             <h1>Create Wallet!</h1>
             <br />

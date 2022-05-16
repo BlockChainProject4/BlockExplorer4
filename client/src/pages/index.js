@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 
 const Index = () => {
    
-    const [cookies] = useCookies("");
+    const [cookies, removeCookie] = useCookies("");
     console.log(cookies.token)
 
 
@@ -40,7 +40,8 @@ const Index = () => {
     const handleClick_MINE = async () => {
             if(mineCount.value <= 0) {
                 alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
-            } else {
+            } 
+            else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
             await axios.post('http://localhost:3001/blocks/mine', data)

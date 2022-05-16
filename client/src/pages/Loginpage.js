@@ -4,7 +4,7 @@ import Header from '../component/Global/Header'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 
-const Loginpage = () => { 
+const Loginpage = ({ isLogin, setIsLogin }) => { 
   const navigate = useNavigate()
   const [user, setUser] = useState({
     publickey: "",
@@ -27,14 +27,15 @@ const handleSubmit = async (e) => {
       alert("모든 정보를 입력 해 주세요")
       return false;
   }
+
   const result = await axios.post("http://localhost:3001/blocks/login", user, {
     withCredentials : true
   })
 
   const reqMSG = result.data.message;
-  const msg = result.data.id;
-  console.log(msg)
   if(reqMSG == "로그인 성공"){
+    console.log('asdfasdf')
+    setIsLogin(false)
     navigate('/')
   }
 }
@@ -46,7 +47,6 @@ useEffect(() => {
 
   return (
     <div>
-        <Header/>
         <div>
             <h1>Login Page 입니다.</h1>
             <br />
