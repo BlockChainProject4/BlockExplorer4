@@ -32,8 +32,6 @@ const handleSubmit = async (e) => {
   })
 
   const reqMSG = result.data.message;
-  const msg = result.data.id;
-  console.log(msg)
   if(reqMSG == "로그인 성공"){
     navigate('/')
   }

@@ -7,9 +7,7 @@ import { useCookies } from 'react-cookie';
 const Index = () => {
    
     const [cookies] = useCookies("");
-    console.log(cookies.token)
-
-
+    const identification = cookies.token;
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
@@ -38,9 +36,14 @@ const Index = () => {
     };
 
     const handleClick_MINE = async () => {
+            if(identification == undefined) {
+                alert("로그인 후 이용해 주세요")
+                return false;
+            }
             if(mineCount.value <= 0) {
                 alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
-            } else {
+            } 
+            else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
             await axios.post('http://localhost:3001/blocks/mine', data)
