@@ -97,7 +97,7 @@ router.get("/signinfo", async (req, res) => {
 
 // 로그인 
 
-router.post("/login", async (req, res) => {
+router.use("/login", async (req, res) => {
   const AllKey = [];
   const { publickey, passwd } = req.body;
   const [idResult] = await pool.query(`SELECT publickey, passwd FROM wallet`);
