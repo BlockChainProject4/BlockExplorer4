@@ -2,9 +2,20 @@
     align-items: center;
     justify-content: center;
     height: 100px;
-    background-color: aqua;
+    /* background-color: DarkSlateGray; */
+    /* background-color: white; */
     width: 100%;
     top: 0px;
     z-index: 5;
-    color: red;
+    /* color: red; */
+}
+
+.headericon {
+    margin-right: 20px;
+}
+
+.navspinner {
+    display: flex;
+    justify-content: end;
+
 }

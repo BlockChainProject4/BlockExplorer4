@@ -1,15 +1,34 @@
 .FooterContainer {
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    background-color: chartreuse;
-    width: 100%;
-    top: 0px;
-    z-index: 5;
-    color: black;
+    /* align-items: center;
+    justify-content: center; */
+    height: 200px;
+    /* background-color: DarkSlateGray; */
+    width: 85%;
+    /* top: 0px; */
+    /* z-index: 5; */
+    position: absolute;
+    bottom: 0;
 }
 
 .footericons {
-    float: right;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
 }
 
+.icon {
+    margin-top: 50px;
+    margin-right: 30px;
+}
+
+.footertext {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 20px;
+
+}
+
+.footertext b{
+    color: white;
+}

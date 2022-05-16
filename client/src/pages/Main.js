@@ -3,7 +3,7 @@ import './main.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../component/Global/Header';
 import Footer from '../component/Global/Footer';
-import UserTradList from '../component/CoinList/UserTradList';
+// import UserTradList from '../component/CoinList/UserTradList';
 import Index from './index';
 
 const Main = () => {
@@ -11,7 +11,7 @@ const Main = () => {
     <div >
       <Header/>
         <div className='main_container'>
-          <UserTradList/>
+          {/* <UserTradList/> */}
           <Index />
         </div>
       <Footer/>
