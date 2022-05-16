@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Footer from '../component/Global/Footer'
 import Header from '../component/Global/Header'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 
 const Loginpage = () => { 
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     publickey: "",
     passwd: ""
@@ -25,7 +27,18 @@ const handleSubmit = (e) => {
       alert("모든 정보를 입력 해 주세요")
       return false;
   }
-  axios.post("http://localhost:3001/blocks/login", user)
+  axios.post("http://localhost:3001/blocks/login", user, {
+    withCredentials : true
+  })
+
+  navigate('/')
+
+  // const result = await axios.post('http://127.0.0.1:3500/user/login', {
+  //   userid : userid.value,
+  //   userpw : userpw.value
+  // }, {
+  //   withCredentials : true,
+  // })
 }
   
 useEffect(() => {

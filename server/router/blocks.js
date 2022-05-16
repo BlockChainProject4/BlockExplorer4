@@ -8,6 +8,8 @@ import { getPublicKeyFromWallet, createPrivateKey } from '../controller/blocks/w
 import express from "express"
 import pool from '../db.js'
 import ecdsa from 'elliptic';
+import createToken from '../utils/jwt.js'
+
 
 
 const router = express.Router();
@@ -111,7 +113,8 @@ router.post("/login", async (req, res) => {
   }
 
   if(ValidLogin()) {
-    res.status(200).send({message: "로그인 성공"})
+    const token = createToken({publickey})
+    res.cookie("token", token).status(200).send({message: "로그인 성공"})
   } else {
     res.status(404).send({
       message: "로그인 실패"
