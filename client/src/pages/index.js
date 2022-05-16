@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import {React, useState} from 'react';
+import './index.css'
 
 const Index = () => {
 
@@ -61,8 +62,8 @@ const Index = () => {
     return(
         <>
             <span>
-            <input placeholder='채굴 횟수를 입력 해 주세요' type="number" onChange={handleChange_MINE}/>
-            <Button variant="danger" onClick={handleClick_MINE}>채굴버튼</Button>
+            <input className='coinnumber' placeholder='채굴 횟수를 입력 해 주세요' type="number" onChange={handleChange_MINE}/>
+            <Button size="lg" variant="dark" onClick={handleClick_MINE}>채굴버튼</Button>
             </span>
             <span>채굴 한 블록 정보 : <textarea readOnly rows="1" name='mineBlockInfo' value="{}"></textarea></span>
 
@@ -70,7 +71,7 @@ const Index = () => {
 
             <span>
             <input placeholder='조회 할 BLOCK 정보를 입력하세요' type="text" name="idxNum" onChange={handleChange_VIEW}/>
-            <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
+            <Button size="lg" variant="dark" onClick={handleClick_VIEW}>조회버튼</Button>
             </span>
             {/* <a onClick={handleClick_VIEW} href='http://localhost:3000/blockslist' > 목록으로 이동 </a> */}
             <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo'  value=""></textarea></span>

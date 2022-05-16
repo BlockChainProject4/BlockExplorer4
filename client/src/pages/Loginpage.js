@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Footer from '../component/Global/Footer'
 import Header from '../component/Global/Header'
 import axios from "axios"
+import { Button } from 'react-bootstrap';
+
 
 const Loginpage = () => { 
   const [user, setUser] = useState({
@@ -47,7 +49,7 @@ useEffect(() => {
             <br />
             <input type="password" placeholder='비밀번호를 입력해 주세요...' name="passwd" onChange={handleChange} />
             <br />
-            <button onClick={handleSubmit}>Login</button>
+            <Button size="lg" variant="dark" onClick={handleSubmit}>Login</Button>
         </div>
         <Footer/>
     </div>

@@ -3,6 +3,9 @@ import axios from "axios";
 import Footer from '../component/Global/Footer'
 import Header from '../component/Global/Header'
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
+
 
 
 const CreateWallet = () => {
@@ -51,7 +54,7 @@ const CreateWallet = () => {
             <label>사용할 비밀번호를 입력 해 주세요</label>
             <br />
             <input type="password" name='passwd' value={passwd} onChange={handleChange}/>
-            <button onClick={handleSubmit} >지갑 생성</button>
+            <Button size="lg" variant="dark" onClick={handleSubmit}>지갑 생성</Button>
         </div>
         <Footer/>
     </div>
