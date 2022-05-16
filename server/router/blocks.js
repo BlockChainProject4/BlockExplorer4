@@ -8,7 +8,6 @@ import { getPublicKeyFromWallet, createPrivateKey } from '../controller/blocks/w
 import express from "express"
 import pool from '../db.js'
 import ecdsa from 'elliptic';
-import createToken from '../utils/jwt.js'
 
 
 
@@ -53,11 +52,15 @@ router.get('/mine', async (req, res) => {
 })
 
 router.post('/mine', async (req, res) => {
-  res.send(mineBlock(req.body.data));
+  const {data, id} = req.body;
+  console.log(id)
+  res.send(mineBlock(req.body.data.data));
   let blockContent = blocks[blocks.length-1];
     
   try {
-    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`); 
+    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce, reward) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce}, ${blockContent.reward})`); 
+    await pool.query(`INSERT INTO transaction(sendpublickey, frompublickey, rewards) VALUES("OWNER", "${id}", "50")`);
+    await pool.query(`UPDATE wallet SET coinamount = (coinamount + 50) where publickey='${id}'`);
     console.log('New Block 저장 성공!!')
   }
   catch (e) {
@@ -65,10 +68,22 @@ router.post('/mine', async (req, res) => {
   }
 })
 
-//참여 노드 조회
-router.get('/peers', (req, res) => {
-  res.send(getPeers());
+// 금액 전송하기
+router.post('/trans', async(req, res) => {
+  const {user, id} = req.body;
+  const [result] = await pool.query(`SELECT publickey FROM wallet`)
+  for(let i = 0; i < result.length; i++) {
+  if(result[i].publickey == user.address) {
+    await pool.query(`UPDATE wallet SET coinamount = (coinamount + ${user.amount} ) where publickey="${user.address}"`);
+    await pool.query(`UPDATE wallet SET coinamount = (coinamount - ${user.amount} ) where publickey="${id}"`);
+    await pool.query(`INSERT INTO transaction(sendpublickey, frompublickey, rewards) VALUES("${id}", "${user.address}", "${user.amount}")`);
+    res.json({message:1})
+    return;
+  }    
+}
+  res.json({message:2})
 })
+
 
 // 참여 노드 추가
 router.post('/addPeer', (req, res) => {

@@ -5,6 +5,7 @@ import Main from './pages/Main.js'
 import Loginpage from './pages/Loginpage';
 import Mypage from './pages/Mypage';
 import CreateWallet from './pages/CreateWallet';
+import Transaction from './pages/Transaction';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Route path='/login' element={<Loginpage/>}></Route>
                 <Route path='/mypage' element={<Mypage/>}></Route>
                 <Route path='/createwallet' element={<CreateWallet/>}></Route>
+                <Route path='/transaction' element={<Transaction/>}></Route>
             </Routes>
 
         </div>
