@@ -38,7 +38,7 @@ const Index = () => {
             } else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
-            await axios.post('http://localhost:3001/blocks/mineBlock', data)
+            await axios.post('http://localhost:3001/blocks/mine', data)
         //    await axios.post('http://13.125.253.189:3000//blocks/mineBlock', data)
                 alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
             }
