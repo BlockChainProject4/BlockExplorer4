@@ -31,27 +31,18 @@ router.post('/view', async (req, res) => {
   try {
     let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
     postResult.push(result)
-    // console.log('idx = 1 Block 조회 성공!!')
-    // console.log(result)
-    res.send(result)
+    res.send(postResult)
   } catch (e) {
-    // console.log('idx = 1 Block 조회 실패!!')
+
   }
 })
 
-router.get('/view', async (req, res) => {
-  // try {
-  //   console.log("postResult" + postResult)
-  //   let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
-  //   // console.log(result)
-  // } catch (e) {
-  //   console.log('블록 목록 조회 실패!!!')
-  // }
+router.get('/view', (req, res) => {
   res.send(postResult)
-  console.log("befor : " + postResult[0])
+  postResult = [];
 })
-postResult=[];
-console.log("after : " + postResult)
+
+
 
 //블록 채굴
 router.get('/mine', async (req, res) => {

@@ -47,17 +47,17 @@ const Index = () => {
 
     const handleClick_VIEW = async () => {
         const blockData = viewData.value
-        const result = await axios.post('http://localhost:3001/blocks/view', { blockData })
-        // console.log(result.data)
-
+        await axios.post('http://localhost:3001/blocks/view', { blockData })
         setTimeout(bringPostData, 100)
     }
 
     const bringPostData = async () => {
         const result = await axios.get('http://localhost:3001/blocks/view')
-        console.log("result DATA : " + result[1])
+        setBringData(result.data[0])
     }
-    
+
+    const BlockInfo = bringData.idx + "\n" + bringData.timestamps + "\n" + bringData.hashs + "\n" + bringData.previousHash + "\n" + bringData.difficulty + "\n" + bringData.nonce
+
     return(
         <>
             <span>
@@ -72,12 +72,9 @@ const Index = () => {
             <input placeholder='조회 할 BLOCK 정보를 입력하세요' type="text" name="idxNum" onChange={handleChange_VIEW}/>
             <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
             </span>
-            {/* <a onClick={handleClick_VIEW} href='http://localhost:3000/blockslist' > 목록으로 이동 </a> */}
-            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo'  value=""></textarea></span>
+            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></span>
 
-        </>
-            // <button onClick={handleClick}>채굴</button>
-        
+        </>       
     )
 }
 

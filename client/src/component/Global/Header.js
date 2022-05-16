@@ -12,6 +12,7 @@ const Header = () => {
                 <Navbar.Brand Link="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/createwallet">CreateWallet</Nav.Link>
                     <Nav.Link href="/login">LoginPage</Nav.Link>
                     <Nav.Link href="/mypage">MyPage</Nav.Link>
                 </Nav>
