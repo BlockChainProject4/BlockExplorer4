@@ -4,6 +4,8 @@ import Footer from '../component/Global/Footer'
 import Header from '../component/Global/Header'
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import TextField from '@mui/material/TextField';
+import './createwallet.css'
 
 
 
@@ -48,13 +50,23 @@ const CreateWallet = () => {
   return (
     <div>
         <Header/>
-        <div>
-            <h1>Create Wallet!</h1>
-            <br />
-            <label>사용할 비밀번호를 입력 해 주세요</label>
-            <br />
-            <input type="password" name='passwd' value={passwd} onChange={handleChange}/>
-            <button onClick={handleSubmit} >지갑 생성</button>
+        <div className='walletcontainer'>
+            <div className='wallettitle'>
+                <h1>Create Wallet</h1>
+            </div>
+            <div className='wallettext'>
+                <p>Password to use</p>
+            </div>
+            <div>
+                <TextField className='headertextfield' id="standard-basic" color="secondary" value={passwd} label="Please enter your PIN number" variant="standard" type="password" name="passwd" onChange={handleChange} />
+            </div>
+            <div className='walletbtn'>
+                <Button size="lg" variant="dark" onClick={handleSubmit}>Create Wallet</Button>
+            </div>
+            <div className='warninfotext'>
+                <p>This Password encrypts your private key. This dose not act as a seed to generate your keys.</p>
+                <strong>You will need this password + your private key to unlock your wallet</strong>
+            </div>
         </div>
         <Footer/>
     </div>

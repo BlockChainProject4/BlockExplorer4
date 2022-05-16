@@ -1,19 +1,16 @@
 .FooterContainer {
-    /* align-items: center;
-    justify-content: center; */
+    align-items: center;
+    justify-content: center;
     height: 200px;
-    /* background-color: DarkSlateGray; */
-    width: 85%;
-    /* top: 0px; */
-    /* z-index: 5; */
-    position: absolute;
+    width: 100%;
     bottom: 0;
+    /* position : absolute; */
+    /* bottom : 0; */
 }
 
 .footericons {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .icon {

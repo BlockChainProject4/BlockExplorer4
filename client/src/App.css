@@ -1,12 +1,12 @@
-/* .container {
-  display: flex;
-} */
+.wrap {
+  display: flex; 
+  min-height: 100vh; 
+  flex-direction: column;
+}
 
-/* @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap'); */
-
-/* .App {
-
-} */
+main {
+  flex: 1;
+}
 
 /* List */
 .DiaryList {
