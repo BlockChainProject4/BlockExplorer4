@@ -131,7 +131,7 @@ router.use("/login", async (req, res) => {
   if(ValidLogin()) {
     console.log('validlogin')
     const token = publickey
-    res.cookie("heidi", token).status(200).send({message: "로그인 성공"})
+    res.cookie("token", token).status(200).send({message: "로그인 성공"})
     // res.json({})
     // res.send({heidi:publickey})
   } else {

@@ -54,7 +54,7 @@ const Transaction = () => {
   return (
     <div>
         <div>
-            <h1>Create Wallet!</h1>
+            <h1>Transaction Page</h1>
             <br />
             <label>전송 할 주소를 입력 해 주세요</label>
             <br />
