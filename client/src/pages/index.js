@@ -56,7 +56,7 @@ const Index = () => {
         setBringData(result.data[0])
     }
 
-    const BlockInfo = bringData.idx + "\n" + bringData.timestamps + "\n" + bringData.hashs + "\n" + bringData.previousHash + "\n" + bringData.difficulty + "\n" + bringData.nonce
+    const BlockInfo = "블록 번호 : " + bringData.idx + "\n" + "블록 생성 시간 : " + bringData.timestamps + "\n" + "블록 해시 : " + bringData.hashs + "\n" + "이전 블록 해시 : " + bringData.previousHash + "\n"+ "채굴 난이도 : " + bringData.difficulty + "\n" + "Nonce 값 : " + bringData.nonce
 
     return(
         <>
