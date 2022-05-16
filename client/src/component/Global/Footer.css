@@ -1,15 +1,33 @@
 .FooterContainer {
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    background-color: chartreuse;
+    /* align-items: center;
+    justify-content: center; */
+    height: 200px;
+    background-color: DarkSlateGray;
     width: 100%;
     top: 0px;
     z-index: 5;
-    color: black;
 }
 
 .footericons {
-    float: right;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
 }
 
+.icon {
+    margin-top: 50px;
+    margin-right: 30px;
+}
+
+.footertext {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 20px;
+
+}
+
+.footertext b{
+    color: white;
+    justify-content: end;
+}
