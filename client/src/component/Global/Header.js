@@ -20,12 +20,14 @@ const Header = ({ isLogin, setIsLogin }) => {
         window.location.reload()
     }
 
+
     return (
         <div className='Wrapper'>
             <header>
-            <Navbar bg="primary" variant="dark">
+            <Navbar  variant="dark">
                 <Container>
-                <Navbar.Brand Link="/">Block Explore</Navbar.Brand>
+                < SiHiveBlockchain className='headericon' color='white' size={30} />
+                <Navbar.Brand className='navtext' href="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
                     {isLogin
                     ?
@@ -41,6 +43,7 @@ const Header = ({ isLogin, setIsLogin }) => {
                         <button onClick={onClick}>LOGOUT</button>
                     </>
                     }
+
                 </Nav>
                 </Container>
         </Navbar>

@@ -1,15 +1,16 @@
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import {React, useState, useEffect} from 'react';
+import './index.css'
+// import { TextField } from "@material-ui/core";
+import {TextField} from '@mui/material';
+import { React, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 const Index = () => {
    
     const [cookies, removeCookie] = useCookies("");
     console.log(cookies.token)
-
-
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
@@ -38,13 +39,17 @@ const Index = () => {
     };
 
     const handleClick_MINE = async () => {
+            if(identification == undefined) {
+                alert("로그인 후 이용해 주세요")
+                return false;
+            }
             if(mineCount.value <= 0) {
                 alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
             } 
             else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
-            await axios.post('http://localhost:3001/blocks/mine', data)
+            await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification})
         //    await axios.post('http://13.125.253.189:3000//blocks/mineBlock', data)
                 alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
             }
@@ -67,20 +72,35 @@ const Index = () => {
 
 
     return(
-        <>
-            <span>
-            <input placeholder='채굴 횟수를 입력 해 주세요' type="number" onChange={handleChange_MINE}/>
-            <Button variant="danger" onClick={handleClick_MINE}>채굴버튼</Button>
-            </span>
-
-            <br />
-
-            <span>
-            <input placeholder='조회 할 BLOCK 정보를 입력하세요' type="text" name="idxNum" onChange={handleChange_VIEW}/>
-            <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
-            </span>
-            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "블록정보를 입력 해 주세요.." : BlockInfo}></textarea></span>
-        </>       
+        <div>
+            <div>
+                <div className='maintitle'>
+                    <h1>Create BLOCK</h1>
+                </div>
+            </div>
+            <div className='maincontainer'>
+                <div className='coinminingcontainer'>
+                    <div>
+                        <TextField id="standard-basic"  color="secondary" type="number" label="MINING NUMBER" variant="standard" onChange={handleChange_MINE}  />
+                        <Button size="lg" variant="dark" onClick={handleClick_MINE}>MINING</Button>
+                    </div>
+                    <div className='textinfo'>
+                        <p> About Mined Blocks </p> 
+                    </div>
+                    <div><textarea className='blockinfo' readOnly rows="1" name='mineBlockInfo' value="{}"></textarea></div>
+                </div>
+                <div className='blockinfocontainer'>
+                    <div>
+                        <TextField id="standard-basic"  color="secondary" type="text"  name="idxNum" label="CHECK BLOCK INFO" variant="standard" onChange={handleChange_VIEW}  />
+                        <Button size="lg" variant="dark" onClick={handleClick_VIEW}>CHECK</Button>
+                    </div>
+                    <div className='textinfo' > 
+                        <p>Viewed block information</p>
+                    </div>
+                    <div> <textarea className='blockinfo' readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></div>
+                </div>
+            </div>    
+        </div>   
     )
 }
 

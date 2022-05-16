@@ -5,6 +5,9 @@ import Header from '../component/Global/Header'
 import { useNavigate } from 'react-router-dom';
 
 
+
+
+
 const CreateWallet = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({

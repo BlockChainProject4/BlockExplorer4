@@ -8,6 +8,7 @@ import CreateWallet from './pages/CreateWallet';
 import Header from './component/Global/Header';
 import { useCookies } from 'react-cookie';
 
+
 function App() {
     const [isLogin, setIsLogin] = useState(true)
     const [cookies, _, removeCookie] = useCookies('');
