@@ -7,8 +7,6 @@ const pool = mysql.createPool({ //접속가능 횟수 조절
   database : 'blockexplorer'
 })
 
-console.log(pool)
-
 //쿼리 함수 제작
 
 // async function select(){
