@@ -62,7 +62,6 @@ const getTransactionId = (transaction) => {
         .map((txIn) => txIn.txOutId + txIn.txOutIndex)
         // reduce는 0번부터 9번까지 숫자가 들어있는 배열이 있엇다고 하면 0번과 그 다음것을 계산을하여 그 다음값이 시작값이 된다. 최종적으로 하나의 값이 나온다.
         .reduce((a, b) => a + b, '');
-    
         // txOuts에 있는 내용들을 하나의 문자열로 만든다.
     const txOutsContent = transaction.txOuts
         .map((txOut) => txOut.address + txOut.amount)
@@ -295,6 +294,10 @@ const updateTransactionPool = () => {
     _.without(transactionPool, ...removable);
 }
 
+// const isValidateBlockTransaction = (transactions, unspentTxOuts, blockIndex) => {
+//     return true
+// }
+
 const isInTx = (txIn) => {
     const findTxOut = _(unspentTxOuts).find((uTx0) => {
         return uTxO.txOutIndex === txIn.txOutIndex && uTx0.txOutId === txIn.txOutId
@@ -305,10 +308,10 @@ const isInTx = (txIn) => {
 
 // const processTransaction = (transactions, unspentTxOuts, blockIndex) => {
 //     // 1. 예외처리 (트랜잭션 구조를 검증하는 과정) 
-//     if (!isValidateBlockTransaction(transactions, unspentTxOuts, blockIndex)) {
-//         console.log('invalid processTransaction');
-//         return null;
-//     }
+//     // if (!isValidateBlockTransaction(transactions, unspentTxOuts, blockIndex)) {
+//     //     console.log('invalid processTransaction');
+//     //     return null;
+//     // }
 
 //     // 2. 미사용 txouts를 추출하는 과정
 //     // 2_1. 블록에 있는 데이터 (처리해야할 트랜잭션 정보) 중에서 txIns로 소모된 txOuts(UnspentTxOut)를 구성
@@ -324,8 +327,9 @@ const isInTx = (txIn) => {
 
 //     // 2_3. 기존 UnspentTxOut - 소모된 UnspentTxOut + newUnspentTxOut을 추가   unspentTxOuts - consumedTxOuts + newUnspentTxOuts; 내용이 겹치면 필터링을 한번 해분다.
 //     // 두 1차원 배열의 txOutId 와 txOutIndex를 비교해서 같은 요소를 filter하는 코드를 만들어보기
+
 //     const resultUnspentTxOuts = (unspentTxOuts.filter((uTxO) => !chceckSameElement
-//     (consumedTxOuts, uTxO.txOutIndex, uTx0.txOutId))).concat(newUnspentTxOuts);
+//     (consumedTxOuts, uTxO.txOutIndex, uTxO.txOutId))).concat(newUnspentTxOuts);
 
 //     unspentTxOuts = resultUnspentTxOuts;
 //     return resultUnspentTxOuts; // myUnspentTxOut가 되야한다.

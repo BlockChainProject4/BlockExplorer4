@@ -220,10 +220,12 @@ const broadcasting = (message) => {
 
 const mineBlock = (blockData) => {
     const newBlock = createBlock(blockData);
+    console.log(newBlock)
     if (addBlock(newBlock, getLatestBlock()))
     {
         broadcasting(responseLatestMessage());
     }
+    return
 }
 
 // 내가 새로운 블록을 채굴했을 때 연결된 노드들에게 전파

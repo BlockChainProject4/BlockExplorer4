@@ -17,3 +17,11 @@ CREATE TABLE `blockdata` (
 --   `difficulty` INT(11) default 0  NOT NULL,
 --   `nonce` VARCHAR(64) NOT NULL
 -- ) CHARSET=utdf8mb4 COLLATE=utf8m4_general_ci;
+
+-- make wallet
+CREATE TABLE `wallet` (
+	`idx` INT(11) PRIMARY KEY auto_increment, 
+    `passwd` VARCHAR(60) NOT NULL,
+    `publickey` VARCHAR(65) NOT NULL,
+    `privatekey` VARCHAR(65) NOT NULL
+    );
