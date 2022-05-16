@@ -48,7 +48,8 @@ router.get('/view', (req, res) => {
 
 //블록 채굴
 router.get('/mine', async (req, res) => {
-  res.send("hi mine")
+  const [result] = await pool.query(`SELECT * FROM blockdata ORDER BY idx DESC LIMIT 1`);
+  res.send(result)
 })
 
 router.post('/mine', async (req, res) => {

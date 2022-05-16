@@ -45,6 +45,7 @@ const Index = () => {
         }
     }
 
+
     const handleClick_VIEW = async () => {
         const blockData = viewData.value
         await axios.post('http://localhost:3001/blocks/view', { blockData })
@@ -58,13 +59,14 @@ const Index = () => {
 
     const BlockInfo = "블록 번호 : " + bringData.idx + "\n" + "블록 생성 시간 : " + bringData.timestamps + "\n" + "블록 해시 : " + bringData.hashs + "\n" + "이전 블록 해시 : " + bringData.previousHash + "\n"+ "채굴 난이도 : " + bringData.difficulty + "\n" + "Nonce 값 : " + bringData.nonce
 
+
+
     return(
         <>
             <span>
             <input placeholder='채굴 횟수를 입력 해 주세요' type="number" onChange={handleChange_MINE}/>
             <Button variant="danger" onClick={handleClick_MINE}>채굴버튼</Button>
             </span>
-            <span>채굴 한 블록 정보 : <textarea readOnly rows="1" name='mineBlockInfo' value="{}"></textarea></span>
 
             <br />
 
@@ -72,7 +74,7 @@ const Index = () => {
             <input placeholder='조회 할 BLOCK 정보를 입력하세요' type="text" name="idxNum" onChange={handleChange_VIEW}/>
             <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
             </span>
-            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></span>
+            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "블록정보를 입력 해 주세요.." : BlockInfo}></textarea></span>
 
         </>       
     )
