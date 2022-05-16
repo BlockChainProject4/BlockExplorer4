@@ -2,10 +2,12 @@
     /* align-items: center;
     justify-content: center; */
     height: 200px;
-    background-color: DarkSlateGray;
-    width: 100%;
-    top: 0px;
-    z-index: 5;
+    /* background-color: DarkSlateGray; */
+    width: 85%;
+    /* top: 0px; */
+    /* z-index: 5; */
+    position: absolute;
+    bottom: 0;
 }
 
 .footericons {
@@ -29,5 +31,4 @@
 
 .footertext b{
     color: white;
-    justify-content: end;
 }

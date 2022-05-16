@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+div {
+  font-family: 'Staatliches', cursive;
+}
+
 input {
+    font-family: 'Staatliches', cursive;
     width: 300px;
     height: 32px;
     font-size: 15px;
@@ -10,6 +17,7 @@ input {
 }
 
 textarea {
+    
     width: 300px;
     height: 32px;
     font-size: 15px;
@@ -19,4 +27,55 @@ textarea {
     /* padding-top: 30px; */
     padding-left: 10px;
     background-color: rgb(233, 233, 233);
+}
+
+.maincontainer {
+    display: flex;
+    width: 100%;
+    /* margin-bottom: 30px; */
+}
+
+.coinminingcontainer {
+    width: 50%;
+    float: left;
+    /* background-color: SlateGray; */
+    text-align: center;
+    height: 500px;
+}
+
+.blockinfocontainer {
+    width: 50%;
+    float: right;
+    /* background-color: LightSlateGray; */
+    text-align: center;
+    height: 500px;
+}
+
+.maintitle{
+    display: flex;
+    justify-content: center;
+    color:aliceblue;
+
+}
+
+.blockinfo {
+    /* margin-top: 40px; */
+    height: 230px;
+}
+
+/* .texttitle {
+    margin-top: 20px;
+} */
+
+.textfiedtitle {
+    margin-top: 40px;
+}
+
+.textinfo {
+    margin-top: 20px;
+}
+
+.textinfo p {
+    color:aliceblue;
+    font-size: 35px;
 }
