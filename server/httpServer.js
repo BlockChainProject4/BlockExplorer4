@@ -10,7 +10,10 @@ import transactions from './router/transaction.js'
 const initHttpServer = (myHttpPort) => {
     const app = express();
     app.use(bodyParser.json());
-    app.use(cors())
+    app.use(cors({
+        origin : true,
+        credentials : true
+    }))
 
     app.get('/', (req, res) => {
         res.send('기본페이지 입니다.')
