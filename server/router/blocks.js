@@ -63,8 +63,7 @@ router.post('/mine', async (req, res) => {
   let blockContent = blocks[blocks.length-1];
     
   try {
-    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`);
-    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`);
+    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`); 
     console.log('New Block 저장 성공!!')
   }
   catch (e) {
