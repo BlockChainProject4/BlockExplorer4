@@ -10,8 +10,9 @@
 
 import CryptoJS from 'crypto-js';
 import random from 'random';
+const COINBASE_AMOUNT = 50;
+
 // import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, processTransaction, updateTransactionPool } from './transcation.js'
-// import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from './transcation.js.js'
 import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from '../transaction/transcation.js'
 // import { getPublicKeyFromWallet } from './wallet.js'
 import { getPublicKeyFromWallet } from './wallet.js'
@@ -19,7 +20,7 @@ import { getPublicKeyFromWallet } from './wallet.js'
 const BLOCK_GENERATION_INTERVAL = 10;       // SECOND(테스트할때) 블록 생성 주기 
 const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;  //  난이도 조절 주기, 난이도를 언제 변경할껀지 시간단위가 아닌 몇번째 블록이 형성될때마다 난이도를 체크할껀지 확인 generate block count
 class Block {
-    constructor(index, data, timestamp, hash, previousHash, difficulty, nonce)
+    constructor(index, data, timestamp, hash, previousHash, difficulty, nonce, reward)
     {
         this.index = index;
         this.data = data;
@@ -28,6 +29,7 @@ class Block {
         this.previousHash = previousHash;
         this.difficulty = difficulty;
         this.nonce = nonce;
+        this.reward = reward;
     }
 }
 
@@ -40,7 +42,7 @@ const calculateHash = (index, data, timestamp, previousHash, difficulty, nonce) 
 // 16진수 1자리 -> 2진수 4자리 256개의 0과 1로 표현
 
 const createGenesisBlock = () => {
-    const genesisBlock = new Block(0, 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks', 0, 0, 0, 20, 0);
+    const genesisBlock = new Block(0, 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks', 0, 0, 0, 15, 0);
     
     genesisBlock.hash = calculateHash(genesisBlock.index, genesisBlock.data, genesisBlock.timestamp,
                         genesisBlock.previousHash, genesisBlock.difficulty, genesisBlock.nonce);
@@ -58,9 +60,9 @@ const createBlock = (blockData) => {
         nextDifficulty);
     const nextHash = calculateHash(nextIndex, blockData, nextTimestamp, previousBlock.hash,
                             nextDifficulty, nextNonce);
-
+    const nextReward = COINBASE_AMOUNT; 
     const newBlock = new Block(nextIndex, blockData, nextTimestamp, nextHash, previousBlock.hash,
-                            nextDifficulty, nextNonce);
+                            nextDifficulty, nextNonce, nextReward);
 
     return newBlock;
 }
@@ -131,7 +133,6 @@ const isValidNewBlock = (newBlock, previousBlock) => {
 const hashMatchDifficulty = (hash, difficulty) => {
     const binaryHash = hexToBinary(hash);
     const requiredPrefix = '0'.repeat(difficulty);
-
     return binaryHash.startsWith(requiredPrefix);
 }
 
@@ -156,8 +157,7 @@ const hexToBinary = (hex) => {
             return null;
         }
     }
-
-    return binary;
+    return binary;   
 }
 
 // 
@@ -212,11 +212,11 @@ const replaceBlockchain = (receiveBlockchain) => {
             blocks = receiveBlockchain;
 
             // 사용되지 않은 txOuts를 셋팅
-            const latestBlock = getLatestBlock();
-            processTransaction(latestBlock.data, getUnspentTxOuts(), latestBlock.index);
+            // const latestBlock = getLatestBlock();
+            // processTransaction(latestBlock.data, getUnspentTxOuts(), latestBlock.index);
 
             // 트랜잭션 풀 업데이트
-            updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
+            // updateTransactionPool(unspentTxOuts); // 블록체인 자체가 바낄때마다 이 동작을 해준다.
         }
         else
         {
@@ -284,5 +284,6 @@ const getLatestBlock = () => {
     return blocks[blocks.length - 1];
 }
 genesisBlock.data = getCoinbaseTransaction(getPublicKeyFromWallet(), getLatestBlock().index + 1) // coinbasetransaction
+
 
 export { getBlocks, getLatestBlock, createBlock, addBlock, isValidNewBlock, replaceBlockchain, blocks}
