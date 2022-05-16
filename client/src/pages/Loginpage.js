@@ -7,7 +7,7 @@ import {TextField} from '@mui/material';
 import './login.css'
 import { useNavigate } from 'react-router-dom'
 
-const Loginpage = () => { 
+const Loginpage = ({ isLogin, setIsLogin }) => { 
   const navigate = useNavigate()
   const [user, setUser] = useState({
     publickey: "",
@@ -30,12 +30,15 @@ const handleSubmit = async (e) => {
       alert("모든 정보를 입력 해 주세요")
       return false;
   }
+
   const result = await axios.post("http://localhost:3001/blocks/login", user, {
     withCredentials : true
   })
 
   const reqMSG = result.data.message;
   if(reqMSG == "로그인 성공"){
+    console.log('asdfasdf')
+    setIsLogin(false)
     navigate('/')
   }
 }
@@ -47,28 +50,18 @@ useEffect(() => {
 
   return (
     <div>
-        <Header/>
-        <div className='logincontainer'>
-            <h1>Confirm Wallet Address</h1>
-            <div className='wallettext'>
-                <div>
-                    <p>Wallet Address</p>
-                </div>
-                <div>
-                    <TextField id="standard-basic"  color="secondary" type="text" label="Please enter your wallet address" variant="standard"  name="publickey" onChange={handleChange}  />
-                </div>
-            </div>
-            <div className='passwordtext'>
-                <div>
-                    <p>PASSWORD</p>
-                </div>
-                <div>
-                    <TextField className='headertextfield' id="standard-basic" color="secondary" label="Please enter your PIN number" variant="standard" type="password" name="passwd" onChange={handleChange} />
-                </div>
-            </div>
-            <div className='loginbtn'>
-                <Button size="lg" variant="dark" onClick={handleSubmit}>Login</Button>
-            </div>
+        <div>
+            <h1>Login Page 입니다.</h1>
+            <br />
+            <label>지갑 주소</label>
+            <br />
+            <input type="text" placeholder='지갑주소를 입력해 주세요…' name="publickey" onChange={handleChange}/>
+            <br />
+            <label>비밀 번호</label>
+            <br />
+            <input type="password" placeholder='비밀번호를 입력해 주세요…' name="passwd" onChange={handleChange} />
+            <br />
+            <button onClick={handleSubmit}>Login</button>
         </div>
         <Footer/>
     </div>

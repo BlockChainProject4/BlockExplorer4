@@ -9,8 +9,8 @@ import { useCookies } from 'react-cookie';
 
 const Index = () => {
    
-    const [cookies] = useCookies("");
-    const identification = cookies.token;
+    const [cookies, removeCookie] = useCookies("");
+    console.log(cookies.token)
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
