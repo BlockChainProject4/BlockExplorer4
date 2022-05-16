@@ -294,9 +294,9 @@ const updateTransactionPool = () => {
     _.without(transactionPool, ...removable);
 }
 
-const isValidateBlockTransaction = (transactions, unspentTxOuts, blockIndex) => {
-    return true
-}
+// const isValidateBlockTransaction = (transactions, unspentTxOuts, blockIndex) => {
+//     return true
+// }
 
 const isInTx = (txIn) => {
     const findTxOut = _(unspentTxOuts).find((uTx0) => {
@@ -308,10 +308,10 @@ const isInTx = (txIn) => {
 
 // const processTransaction = (transactions, unspentTxOuts, blockIndex) => {
 //     // 1. 예외처리 (트랜잭션 구조를 검증하는 과정) 
-//     if (!isValidateBlockTransaction(transactions, unspentTxOuts, blockIndex)) {
-//         console.log('invalid processTransaction');
-//         return null;
-//     }
+//     // if (!isValidateBlockTransaction(transactions, unspentTxOuts, blockIndex)) {
+//     //     console.log('invalid processTransaction');
+//     //     return null;
+//     // }
 
 //     // 2. 미사용 txouts를 추출하는 과정
 //     // 2_1. 블록에 있는 데이터 (처리해야할 트랜잭션 정보) 중에서 txIns로 소모된 txOuts(UnspentTxOut)를 구성

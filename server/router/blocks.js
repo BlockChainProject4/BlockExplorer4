@@ -23,14 +23,49 @@ router.get('/blocks', (req, res) => {
   res.send(getBlocks());
 })
 
-//블록 채굴
-router.post('/mineBlock', async (req, res) => {
-  res.send(mineBlock(req.body.data));
-  let blockContent = blocks[blocks.length - 1];
+let postResult = [];
 
+//블록 채굴
+router.post('/view', async (req, res) => {
+  const { blockData } = req.body
   try {
-    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`)
-    console.log("New Block 저장 성공")
+    let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
+    postResult.push(result)
+    // console.log('idx = 1 Block 조회 성공!!')
+    // console.log(result)
+    res.send(result)
+  } catch (e) {
+    // console.log('idx = 1 Block 조회 실패!!')
+  }
+})
+
+router.get('/view', async (req, res) => {
+  // try {
+  //   console.log("postResult" + postResult)
+  //   let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
+  //   // console.log(result)
+  // } catch (e) {
+  //   console.log('블록 목록 조회 실패!!!')
+  // }
+  res.send(postResult)
+  console.log("befor : " + postResult[0])
+})
+postResult=[];
+console.log("after : " + postResult)
+
+//블록 채굴
+router.get('/mine', async (req, res) => {
+  res.send("hi mine")
+})
+
+router.post('/mine', async (req, res) => {
+  res.send(mineBlock(req.body.data));
+  let blockContent = blocks[blocks.length-1];
+    
+  try {
+    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`);
+    await pool.query(`INSERT INTO blockdata(idx, datas, timestamps, hashs, previousHash, difficulty, nonce) VALUES(${blockContent.index}, "${blockContent.data}", "${blockContent.timestamp}", "${blockContent.hash}", "${blockContent.previousHash}", ${blockContent.difficulty}, ${blockContent.nonce})`);
+    console.log('New Block 저장 성공!!')
   }
   catch (e) {
     console.log('New Block 저장 실패!!')

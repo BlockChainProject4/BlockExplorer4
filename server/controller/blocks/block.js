@@ -10,6 +10,8 @@
 
 import CryptoJS from 'crypto-js';
 import random from 'random';
+const COINBASE_AMOUNT = 50;
+
 // import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, processTransaction, updateTransactionPool } from './transcation.js'
 import { getCoinbaseTransaction, getTransactionPool, getUnspentTxOuts, updateTransactionPool } from '../transaction/transcation.js'
 // import { getPublicKeyFromWallet } from './wallet.js'
@@ -18,7 +20,7 @@ import { getPublicKeyFromWallet } from './wallet.js'
 const BLOCK_GENERATION_INTERVAL = 10;       // SECOND(테스트할때) 블록 생성 주기 
 const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;  //  난이도 조절 주기, 난이도를 언제 변경할껀지 시간단위가 아닌 몇번째 블록이 형성될때마다 난이도를 체크할껀지 확인 generate block count
 class Block {
-    constructor(index, data, timestamp, hash, previousHash, difficulty, nonce)
+    constructor(index, data, timestamp, hash, previousHash, difficulty, nonce, reward)
     {
         this.index = index;
         this.data = data;
@@ -27,6 +29,7 @@ class Block {
         this.previousHash = previousHash;
         this.difficulty = difficulty;
         this.nonce = nonce;
+        this.reward = reward;
     }
 }
 
@@ -57,9 +60,9 @@ const createBlock = (blockData) => {
         nextDifficulty);
     const nextHash = calculateHash(nextIndex, blockData, nextTimestamp, previousBlock.hash,
                             nextDifficulty, nextNonce);
-
+    const nextReward = COINBASE_AMOUNT; 
     const newBlock = new Block(nextIndex, blockData, nextTimestamp, nextHash, previousBlock.hash,
-                            nextDifficulty, nextNonce);
+                            nextDifficulty, nextNonce, nextReward);
 
     return newBlock;
 }
