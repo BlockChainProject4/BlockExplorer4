@@ -16,6 +16,7 @@ const Header = () => {
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/login">Search</Nav.Link>
+                    <Nav.Link href="/createwallet">Createwallet</Nav.Link>
                     <Nav.Link href="/mypage">SearchResult</Nav.Link>
                     <Spinner className='navspinner' animation="border" variant="light" />
                 </Nav>
