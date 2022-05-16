@@ -8,6 +8,8 @@ import { getPublicKeyFromWallet, createPrivateKey } from '../controller/blocks/w
 import express from "express"
 import pool from '../db.js'
 import ecdsa from 'elliptic';
+import createToken from '../utils/jwt.js'
+
 
 
 const router = express.Router();
@@ -46,7 +48,8 @@ router.get('/view', (req, res) => {
 
 //블록 채굴
 router.get('/mine', async (req, res) => {
-  res.send("hi mine")
+  const [result] = await pool.query(`SELECT * FROM blockdata ORDER BY idx DESC LIMIT 1`);
+  res.send(result)
 })
 
 router.post('/mine', async (req, res) => {
@@ -94,7 +97,7 @@ router.get("/signinfo", async (req, res) => {
 
 // 로그인 
 
-router.post("/login", async (req, res) => {
+router.use("/login", async (req, res) => {
   const AllKey = [];
   const { publickey, passwd } = req.body;
   const [idResult] = await pool.query(`SELECT publickey, passwd FROM wallet`);
@@ -110,7 +113,8 @@ router.post("/login", async (req, res) => {
   }
 
   if(ValidLogin()) {
-    res.status(200).send({message: "로그인 성공"})
+    const token = publickey
+    res.cookie("token", token).status(200).send({message: "로그인 성공"})
   } else {
     res.status(404).send({
       message: "로그인 실패"

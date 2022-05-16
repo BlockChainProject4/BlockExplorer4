@@ -5,10 +5,10 @@ import axios from "axios"
 import { Button } from 'react-bootstrap';
 import TextField from '@mui/material/TextField';
 import './login.css'
-
-
+import { useNavigate } from 'react-router-dom'
 
 const Loginpage = () => { 
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     publickey: "",
     passwd: ""
@@ -24,13 +24,22 @@ const handleChange = (e) => {
     })
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   if(publickey == "" || passwd == "") {
       alert("모든 정보를 입력 해 주세요")
       return false;
   }
-  axios.post("http://localhost:3001/blocks/login", user)
+  const result = await axios.post("http://localhost:3001/blocks/login", user, {
+    withCredentials : true
+  })
+
+  const reqMSG = result.data.message;
+  const msg = result.data.id;
+  console.log(msg)
+  if(reqMSG == "로그인 성공"){
+    navigate('/')
+  }
 }
   
 useEffect(() => {

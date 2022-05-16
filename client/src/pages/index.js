@@ -1,12 +1,17 @@
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import {React, useState} from 'react';
 import './index.css'
 // import { TextField } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
+import {React, useState, useEffect} from 'react';
+import { useCookies } from 'react-cookie';
 
 const Index = () => {
+   
+    const [cookies] = useCookies("");
+    console.log(cookies.token)
+
 
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
@@ -48,6 +53,7 @@ const Index = () => {
         }
     }
 
+
     const handleClick_VIEW = async () => {
         const blockData = viewData.value
         await axios.post('http://localhost:3001/blocks/view', { blockData })
@@ -60,6 +66,7 @@ const Index = () => {
     }
 
     const BlockInfo = "블록 번호 : " + bringData.idx + "\n" + "블록 생성 시간 : " + bringData.timestamps + "\n" + "블록 해시 : " + bringData.hashs + "\n" + "이전 블록 해시 : " + bringData.previousHash + "\n"+ "채굴 난이도 : " + bringData.difficulty + "\n" + "Nonce 값 : " + bringData.nonce
+
 
     return(
         <div>
