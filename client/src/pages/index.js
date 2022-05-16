@@ -73,7 +73,7 @@ const Index = () => {
             <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
             </span>
             <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></span>
-
+ 
         </>       
     )
 }
