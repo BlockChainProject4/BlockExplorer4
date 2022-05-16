@@ -2,12 +2,19 @@
   display: flex;
 } */
 
+/* @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap'); */
+
+/* .App {
+
+} */
+
 /* List */
 .DiaryList {
   border: 1px solid gray;
   padding: 20px;
   margin-top: 20px;
 }
+
 
 .DiaryList h2 {
   text-align: center;
@@ -35,3 +42,4 @@
   margin-bottom: 30px;
   margin-top: 30px;
 }
+

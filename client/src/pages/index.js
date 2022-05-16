@@ -1,6 +1,9 @@
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
+import './index.css'
+// import { TextField } from "@material-ui/core";
+import TextField from '@mui/material/TextField';
 import {React, useState, useEffect} from 'react';
 import { useCookies } from 'react-cookie';
 
@@ -69,20 +72,35 @@ const Index = () => {
 
 
     return(
-        <>
-            <span>
-            <input placeholder='채굴 횟수를 입력 해 주세요' type="number" onChange={handleChange_MINE}/>
-            <Button variant="danger" onClick={handleClick_MINE}>채굴버튼</Button>
-            </span>
-
-            <br />
-
-            <span>
-            <input placeholder='조회 할 BLOCK 정보를 입력하세요' type="text" name="idxNum" onChange={handleChange_VIEW}/>
-            <Button variant="danger" onClick={handleClick_VIEW}>조회버튼</Button>
-            </span>
-            <span>조회 한 블록 정보 : <textarea readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "블록정보를 입력 해 주세요.." : BlockInfo}></textarea></span>
-        </>       
+        <div>
+            <div>
+                <div className='maintitle'>
+                    <h1>Create BLOCK</h1>
+                </div>
+            </div>
+            <div className='maincontainer'>
+                <div className='coinminingcontainer'>
+                    <div>
+                        <TextField id="standard-basic"  color="secondary" type="number" label="MINING NUMBER" variant="standard" onChange={handleChange_MINE}  />
+                        <Button size="lg" variant="dark" onClick={handleClick_MINE}>MINING</Button>
+                    </div>
+                    <div className='textinfo'>
+                        <p> About Mined Blocks </p> 
+                    </div>
+                    <div><textarea className='blockinfo' readOnly rows="1" name='mineBlockInfo' value="{}"></textarea></div>
+                </div>
+                <div className='blockinfocontainer'>
+                    <div>
+                        <TextField id="standard-basic"  color="secondary" type="text"  name="idxNum" label="CHECK BLOCK INFO" variant="standard" onChange={handleChange_VIEW}  />
+                        <Button size="lg" variant="dark" onClick={handleClick_VIEW}>CHECK</Button>
+                    </div>
+                    <div className='textinfo' > 
+                        <p>Viewed block information</p>
+                    </div>
+                    <div> <textarea className='blockinfo' readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></div>
+                </div>
+            </div>    
+        </div>   
     )
 }
 
