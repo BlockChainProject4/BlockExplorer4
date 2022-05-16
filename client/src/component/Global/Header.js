@@ -26,7 +26,7 @@ const Header = ({ isLogin, setIsLogin }) => {
             <header>
             <Navbar  variant="dark">
                 <Container>
-                < SiHiveBlockchain className='headericon' color='white' size={30} />
+                {/* <SiHiveBlockchain className='headericon' color='white' size={30} /> */}
                 <Navbar.Brand className='navtext' href="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
                     {isLogin

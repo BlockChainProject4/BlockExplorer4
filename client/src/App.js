@@ -7,6 +7,7 @@ import Mypage from './pages/Mypage';
 import CreateWallet from './pages/CreateWallet';
 import Header from './component/Global/Header';
 import { useCookies } from 'react-cookie';
+import Transaction from './pages/Transaction';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/' element={<Main />}></Route>
                 <Route path='/login' element={<Loginpage isLogin={isLogin} setIsLogin={setIsLogin} />}></Route>
                 <Route path='/mypage' element={<Mypage />}></Route>
+                <Route path='/transaction' element={<Transaction />}></Route>
                 <Route path='/createwallet' element={<CreateWallet />}></Route>
             </Routes>
 
