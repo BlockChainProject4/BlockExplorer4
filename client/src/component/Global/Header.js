@@ -16,7 +16,7 @@ const Header = ({ isLogin, setIsLogin }) => {
 
     const onClick = () => {
         setIsLogin(!isLogin)
-        removeCookie('heidi')
+        removeCookie('token')
         window.location.reload()
     }
 
@@ -40,6 +40,7 @@ const Header = ({ isLogin, setIsLogin }) => {
                     <>
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/mypage">MyPage</Nav.Link>
+                        <Nav.Link href="/transaction">Transaction</Nav.Link>
                         <button onClick={onClick}>LOGOUT</button>
                     </>
                     }

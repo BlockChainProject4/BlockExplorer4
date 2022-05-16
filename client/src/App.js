@@ -15,7 +15,6 @@ function App() {
     const [cookies, _, removeCookie] = useCookies('');
 
     useEffect(()=>{
-        console.log('hello world')
         const result = Object.keys(cookies)
         if ( result.length > 0){
             setIsLogin(false)
