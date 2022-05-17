@@ -22,6 +22,18 @@ const Index = () => {
 
     const [bringData, setBringData] = useState("")
 
+    const onKeyPress_MINE = (e) => {
+        if(e.key == 'Enter') {
+            handleClick_MINE()
+        }
+    }
+
+    const onKeyPress_VIEW = (e) => {
+        if(e.key == 'Enter') {
+            handleClick_VIEW()
+        }
+    }
+
 
     const handleChange_MINE = (e) => {
         let {name, value} = e.target;
@@ -84,7 +96,7 @@ const Index = () => {
 }
 
 
-    const handleClick_VIEW = async () => {
+    const handleClick_VIEW = async (e) => {
         const blockData = viewData.value
         await axios.post('http://localhost:3001/blocks/view', { blockData })
         .then((res) => {
@@ -128,7 +140,7 @@ const Index = () => {
             <div className='maincontainer'>
                 <div className='coinminingcontainer'>
                     <div>
-                        <TextField id="standard-basic"  color="secondary" type="number" label="MINING NUMBER" variant="standard" onChange={handleChange_MINE}  />
+                        <TextField onKeyPress={onKeyPress_MINE} id="standard-basic"  color="secondary" type="number" label="MINING NUMBER" variant="standard" onChange={handleChange_MINE}  />
                         <Button size="lg" variant="dark" onClick={handleClick_MINE}>MINING</Button>
                     </div>
                     <div className='textinfo'>
@@ -138,7 +150,7 @@ const Index = () => {
                 </div>
                 <div className='blockinfocontainer'>
                     <div>
-                        <TextField id="standard-basic"  color="secondary" type="text"  name="idxNum" label="CHECK BLOCK INFO" variant="standard" onChange={handleChange_VIEW}  />
+                        <TextField id="standard-basic"  onKeyPress={onKeyPress_VIEW} color="secondary" type="text"  name="idxNum" label="CHECK BLOCK INFO" variant="standard" onChange={handleChange_VIEW}  />
                         <Button size="lg" variant="dark" onClick={handleClick_VIEW}>CHECK</Button>
                     </div>
                     <div className='textinfo' > 
