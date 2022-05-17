@@ -52,7 +52,7 @@ const Transaction = () => {
                     title: 'Success!',
                     text: 'The remittance has been completed!',
                     icon: 'success',
-                    confirmButtonText: 'Back'
+                    confirmButtonText: 'OK'
                 })
                 // alert("송금이 완료 되었습니다.")
                 navigate(0)

@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
       title: 'Success!',
       text: 'Login Success!',
       icon: 'success',
-      confirmButtonText: 'Back'
+      confirmButtonText: 'OK'
   })
     navigate('/')
   } else if(reqMSG == "로그인 실패") {

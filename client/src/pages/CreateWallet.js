@@ -9,8 +9,6 @@ import './createwallet.css'
 import Swal from 'sweetalert2'
 
 
-
-
 const CreateWallet = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({
@@ -48,7 +46,7 @@ const CreateWallet = () => {
             title: '',
             text: `Wallet Address : ${response.data[0].publickey} \n privatekey (Unable to check when moving page) : ${response.data[0].privatekey}`,
             icon: 'error',
-            confirmButtonText: 'Back'
+            confirmButtonText: 'OK'
         })
         navigate("/login")
     }

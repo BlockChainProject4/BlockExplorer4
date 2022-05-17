@@ -65,7 +65,7 @@ const Index = () => {
                         title: 'Success!',
                         text: `Mining start! Number of runs : ${i + 1} / ${mineCount.value}`,
                         icon: 'success',
-                        confirmButtonText: 'Back'
+                        confirmButtonText: 'OK'
                     })
                 // alert()
             await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification, count:mineCount})
@@ -76,7 +76,7 @@ const Index = () => {
                 title: 'Success!',
                 text: `Mining ${i + 1} / ${mineCount.value} Completion`,
                 icon: 'success',
-                confirmButtonText: 'Back'
+                confirmButtonText: 'OK'
             })
             navigate(0)
         }
