@@ -1,0 +1,14 @@
+.trancontainer {
+    width: 100%;
+    height: 500px;
+    display: block;
+    text-align: center;
+}
+
+.trantext {
+    margin-top: 20px;
+}
+
+.tranbtn {
+    margin-top: 30px;
+}
