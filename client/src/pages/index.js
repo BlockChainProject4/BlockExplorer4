@@ -45,27 +45,43 @@ const Index = () => {
             if(identification == undefined) {
                 Swal.fire({
                     title: 'Error!',
-                    text: '로그인 후 이용해 주세요!',
+                    text: 'Please log in and use it!',
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Back'
                 })
                 return false;
             }
             if(mineCount.value <= 0) {
-                alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Mining is possible only after entering at least one time!',
+                    icon: 'error',
+                    confirmButtonText: 'Back'
+                })
             } 
             else {
                 for(let i = 0; i < mineCount.value; i++ ) {
-                alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
+                    Swal.fire({
+                        title: 'Success!',
+                        text: `Mining start! Number of runs : ${i + 1} / ${mineCount.value}`,
+                        icon: 'success',
+                        confirmButtonText: 'Back'
+                    })
+                // alert()
             await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification, count:mineCount})
             .then((res) => {
                 console.log(res.data.message)
             })
-                alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
-            }
+            Swal.fire({
+                title: 'Success!',
+                text: `Mining ${i + 1} / ${mineCount.value} Completion`,
+                icon: 'success',
+                confirmButtonText: 'Back'
+            })
             navigate(0)
         }
     }
+}
 
 
     const handleClick_VIEW = async () => {
@@ -73,8 +89,12 @@ const Index = () => {
         await axios.post('http://localhost:3001/blocks/view', { blockData })
         .then((res) => {
             if(res.data.message == 1) {
-                alert("존재 하지 않는 블록입니다.")
-            
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Block does not exist.',
+                    icon: 'error',
+                    confirmButtonText: 'Back'
+                })
             }
         })
         setTimeout(bringPostData, 100)

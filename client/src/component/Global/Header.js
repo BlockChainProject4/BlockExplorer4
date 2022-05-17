@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { SiHiveBlockchain } from "react-icons/si";
 import { Button } from 'react-bootstrap';
+import Swal from 'sweetalert2'
 
 
 
@@ -19,8 +20,13 @@ const Header = ({ isLogin, setIsLogin }) => {
     const onClick = () => {
         setIsLogin(!isLogin)
         removeCookie('token')
-        alert("Logout Success!")
-        window.location.reload()
+        Swal.fire({
+            title: 'Success!',
+            text: 'Logout Success!',
+            icon: 'success',
+            confirmButtonText: 'Back'
+        })
+        // window.location.reload()
     }
 
 
@@ -47,7 +53,6 @@ const Header = ({ isLogin, setIsLogin }) => {
                         <Button size="sm" variant="dark" onClick={onClick}>LOGOUT</Button>
                     </>
                     }
-
                 </Nav>
                 </Container>
         </Navbar>
