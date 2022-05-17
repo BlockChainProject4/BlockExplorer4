@@ -74,7 +74,7 @@ const Index = () => {
         .then((res) => {
             if(res.data.message == 1) {
                 alert("존재 하지 않는 블록입니다.")
-              
+            
             }
         })
         setTimeout(bringPostData, 100)
