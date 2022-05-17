@@ -36,9 +36,11 @@ const handleSubmit = async (e) => {
 
   const reqMSG = result.data.message;
   if(reqMSG == "로그인 성공"){
-    console.log('asdfasdf')
     setIsLogin(false)
+    alert("Login Success!")
     navigate('/')
+  } else if(reqMSG == "로그인 실패") {
+    alert("Check your WalletAddress or Password")
   }
 }
   

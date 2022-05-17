@@ -70,6 +70,13 @@ router.post('/mine', async (req, res) => {
   }
 })
 
+// 최신 블록 가져오기
+
+router.get("/recentblock", async(req, res) => {
+  const [result] = await pool.query(`SELECT * FROM blockdata ORDER BY idx DESC LIMIT 1`)
+  res.send(result)
+})
+
 // 금액 전송하기
 router.post('/trans', async(req, res) => {
   const {user, id} = req.body;
@@ -142,7 +149,7 @@ router.use("/login", async (req, res) => {
     // res.json({})
     // res.send({heidi:publickey})
   } else {
-    res.status(404).send({
+    res.status(200).send({
       message: "로그인 실패"
     })
   }
