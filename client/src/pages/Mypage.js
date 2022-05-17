@@ -32,7 +32,7 @@ const Mypage = () => {
   }
   useEffect(() => {
     getIdentification()
-    setTimeout(getResult, 100)    
+    setTimeout(getResult, 200)    
   }, [])
 
   // console.log(wallet.publickey)
