@@ -28,7 +28,12 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   if(publickey == "" || passwd == "") {
-      alert("모든 정보를 입력 해 주세요")
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please enter all the information!',
+        icon: 'error',
+        confirmButtonText: 'Back'
+  })
       return false;
   }
 
@@ -39,14 +44,19 @@ const handleSubmit = async (e) => {
   const reqMSG = result.data.message;
   if(reqMSG == "로그인 성공"){
     setIsLogin(false)
-    alert("Login Success!")
+    Swal.fire({
+      title: 'Success!',
+      text: 'Login Success!',
+      icon: 'success',
+      confirmButtonText: 'OK'
+  })
     navigate('/')
   } else if(reqMSG == "로그인 실패") {
       Swal.fire({
         title: 'Error!',
-        text: 'Check your WalletAddress or Password',
+        text: 'Login failed!',
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonText: 'Back'
     })
     // alert("Check your WalletAddress or Password")
   }

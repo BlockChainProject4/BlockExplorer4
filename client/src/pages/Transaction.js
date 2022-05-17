@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import Footer from '../component/Global/Footer'
-import Header from '../component/Global/Header'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import {TextField} from '@mui/material';
 import { Button, Table } from 'react-bootstrap';
 import './transaction.css';
+import Swal from 'sweetalert2'
+
 
 
 
@@ -39,9 +40,21 @@ const Transaction = () => {
         .then((res)=>{
             console.log(res.data)
             if (res.data.message == 2) {
-                alert("주소가 틀렸습니다")
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'The address is wrong!',
+                    icon: 'error',
+                    confirmButtonText: 'Back'
+                })
+                // alert("주소가 틀렸습니다")
             } else if(res.data.message == 1) {
-                alert("송금이 완료 되었습니다.")
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'The remittance has been completed!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+                // alert("송금이 완료 되었습니다.")
                 navigate(0)
             }
         })                   
