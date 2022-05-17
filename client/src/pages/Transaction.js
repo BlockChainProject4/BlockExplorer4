@@ -11,14 +11,11 @@ import './transaction.css';
 
 
 
-
-
-
 const Transaction = () => {
 
     const [cookies] = useCookies("");
     const identification = cookies.token;
-
+    const [txdata, SetTxdata] = useState([]);
     const navigate = useNavigate();
     const [user, setUser] = useState({
         address: "",
@@ -45,16 +42,24 @@ const Transaction = () => {
                 alert("주소가 틀렸습니다")
             } else if(res.data.message == 1) {
                 alert("송금이 완료 되었습니다.")
+                navigate(0)
             }
         })                   
     }
-
-
+    const recentTransaction = async() => {
+        const response = await axios.get("http://localhost:3001/blocks/recentTx");
+        SetTxdata([...txdata, ...response.data])
+    }  
 
     useEffect(() => {
         setAddress(user.address)
         setAmount(user.amount)
     }, [user])
+
+    useEffect(() => {
+        recentTransaction()
+    },[])
+    console.log(txdata)
 
   return (
     <div>
@@ -74,6 +79,24 @@ const Transaction = () => {
                 <Button size="lg" variant="dark" onClick={handleSubmit}>Sending Coin</Button>
             </div>
         </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>sendAccount</th>
+                        <th>FromAccount</th>
+                        <th>value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {txdata.map((row) => (               
+                <tr>
+                    <td>{row.sendpublickey}</td>
+                    <td>{row.frompublickey}</td>
+                    <td>{row.rewards}</td>
+                </tr>
+                     ))}
+                </tbody>
+            </table>
         <Footer/>
     </div>
   )
