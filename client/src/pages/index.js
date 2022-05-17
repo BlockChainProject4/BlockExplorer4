@@ -6,12 +6,12 @@ import './index.css'
 import {TextField} from '@mui/material';
 import { React, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-   
+    const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies("");
     const identification = cookies.token;
-    console.log(identification)
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
@@ -50,8 +50,12 @@ const Index = () => {
             else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
-            await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification})
+            await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification, count:mineCount})
+            .then((res) => {
+                console.log(res.data.message)
+            })
         //    await axios.post('http://13.125.253.189:3000//blocks/mineBlock', data)
+
                 alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
             }
         }
@@ -61,6 +65,12 @@ const Index = () => {
     const handleClick_VIEW = async () => {
         const blockData = viewData.value
         await axios.post('http://localhost:3001/blocks/view', { blockData })
+        .then((res) => {
+            if(res.data.message == 1) {
+                alert("존재 하지 않는 블록입니다.")
+                navigate(0)
+            }
+        })
         setTimeout(bringPostData, 100)
     }
 
@@ -98,7 +108,7 @@ const Index = () => {
                     <div className='textinfo' > 
                         <p>Viewed block information</p>
                     </div>
-                    <div> <textarea className='blockinfo' readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "1" : BlockInfo}></textarea></div>
+                    <div> <textarea className='blockinfo' readOnly rows="1" name='viewBlockInfo' value={bringData.idx == undefined ? "" : BlockInfo}></textarea></div>
                 </div>
             </div>    
         </div>   
