@@ -75,6 +75,7 @@ const Transaction = () => {
     console.log(txdata)
 
 return (
+    identification != null ? 
     <div>
         <div className='tranmaincontainer'>
             <div className='trancontainer'>
@@ -94,6 +95,40 @@ return (
                 </div>
             </div>
             <div className='tablecontainer'>
+                <div className='tabletitle'>
+                    <h2>Recent  Transaction</h2>
+                </div>
+                <div className='tablediv'>
+                    <Table striped bordered hover variant="dark" className='trantable' >
+                        <thead>
+                            <tr>
+                                <th>sendAccount</th>
+                                <th>FromAccount</th>
+                                <th>value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {txdata.map((row) => (               
+                        <tr>
+                            <td>{row.sendpublickey}</td>
+                            <td>{row.frompublickey}</td>
+                            <td>{row.rewards}</td>
+                        </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>
+
+            </div>
+        </div>
+        <Footer/>
+    </div>
+    :
+    <div>
+        <div className='tranmaincontainer'>
+            {/* <div className='trancontainer'>
+            </div> */}
+            <div className='tablecontainer2'>
                 <div className='tabletitle'>
                     <h2>Recent  Transaction</h2>
                 </div>
