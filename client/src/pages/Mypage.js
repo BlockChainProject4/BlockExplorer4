@@ -86,7 +86,7 @@ const Mypage = () => {
         <br></br>
         <br></br>
         <br></br>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
     :
     <div>
