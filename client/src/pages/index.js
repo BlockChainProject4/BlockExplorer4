@@ -63,6 +63,17 @@ const Index = () => {
             })
             return false;
         }
+
+        if(mineCount == undefined) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Please enter a value!',
+                icon: 'error',
+                confirmButtonText: 'Back'
+            })
+            return false;
+        }
+
         if (mineCount.value <= 0) {
             Swal.fire({
                 title: 'Error!',
