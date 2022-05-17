@@ -1,5 +1,3 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 div {
@@ -19,7 +17,7 @@ input {
 }
 
 textarea {
-    
+    font-family: 'Staatliches', cursive;
     width: 300px;
     height: 32px;
     font-size: 15px;

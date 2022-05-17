@@ -5,7 +5,7 @@
 }
 
 .trancontainer {
-    width: 30%;
+    width: 35%;
     display: block;
     float: left;
     /* background-color: SlateGray; */
@@ -17,7 +17,7 @@
 .tablecontainer {
     display: block;
     color: aliceblue;
-    width: 70%;
+    width: 65%;
     /* display: block; */
     float: right;
     /* background-color: blue; */
