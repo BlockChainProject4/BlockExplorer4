@@ -184,7 +184,7 @@ router.post('/mypage', async(req, res, next) => {
 })
 
 router.get('/mypage', async(req, res) => {
-  res.json({"idArray":[idArray], "transactionArr": [transactionArr]})
+  res.json({"idArray":[idArray], "transactionArr": [transactionArr.reverse()]})
   idArray =[]
 })
 

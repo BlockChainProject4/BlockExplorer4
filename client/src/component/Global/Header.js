@@ -43,7 +43,9 @@ const Header = ({ isLogin, setIsLogin }) => {
                     <>
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/createwallet">CreateWallet</Nav.Link>
-                        <Nav.Link href="/login">LoginPage</Nav.Link>               
+                        <Nav.Link href="/login">LoginPage</Nav.Link>
+                        <Nav.Link href="/transaction">Transaction</Nav.Link>
+               
                     </>
                     :
                     <>
