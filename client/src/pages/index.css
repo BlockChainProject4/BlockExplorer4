@@ -19,7 +19,7 @@ input {
 }
 
 textarea {
-    
+    font-family: 'Staatliches', cursive;
     width: 300px;
     height: 32px;
     font-size: 15px;
