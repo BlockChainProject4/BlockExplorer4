@@ -7,6 +7,7 @@ import {TextField} from '@mui/material';
 import { React, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Index = () => {
     const navigate = useNavigate();
@@ -42,7 +43,12 @@ const Index = () => {
 
     const handleClick_MINE = async () => {
             if(identification == undefined) {
-                alert("로그인 후 이용해 주세요")
+                Swal.fire({
+                    title: '로그인 후 이용해 주세요!',
+                    text: 'Do you want to continue',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                })
                 return false;
             }
             if(mineCount.value <= 0) {
@@ -68,7 +74,7 @@ const Index = () => {
         .then((res) => {
             if(res.data.message == 1) {
                 alert("존재 하지 않는 블록입니다.")
-              
+            
             }
         })
         setTimeout(bringPostData, 100)
