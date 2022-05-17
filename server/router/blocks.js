@@ -16,6 +16,7 @@ const router = express.Router();
 const ec = new ecdsa.ec('secp256k1');
 
 router.use(express.json())
+router.use(express.urlencoded({ extended : true}))
 router.get('/', (req, res) => {
   res.send('Hello, World!');
 })
@@ -143,7 +144,6 @@ router.use("/login", async (req, res) => {
   }
 
   if(ValidLogin()) {
-    console.log('validlogin')
     const token = publickey
     res.cookie("token", token).status(200).send({message: "로그인 성공"})
     // res.json({})
@@ -158,6 +158,23 @@ router.use("/login", async (req, res) => {
 // ==================== 일단 보관 ==================
 router.post('/createBlock', (req, res) => {
   res.send(createBlock(req.body.data));
+})
+
+let idArray = [];
+let transactionArr = [];
+router.post('/mypage', async(req, res, next) => {
+  const {id} = req.body
+  const [[result]] = await pool.query(`SELECT publickey, coinamount FROM wallet WHERE publickey="${id}"`);
+  const [result2] = await pool.query(`select sendpublickey, frompublickey, rewards from transaction WHERE sendpublickey="${id}" OR frompublickey="${id}"`);
+
+  idArray.push(result)
+  transactionArr = result2.flat()
+
+})
+
+router.get('/mypage', async(req, res) => {
+  res.json({"idArray":[idArray], "transactionArr": [transactionArr]})
+  idArray =[]
 })
 
 
