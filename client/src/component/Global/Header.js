@@ -17,7 +17,7 @@ const Header = ({ isLogin, setIsLogin }) => {
     const onClick = () => {
         setIsLogin(!isLogin)
         removeCookie('token')
-        window.location.reload()
+        window.location.reload('/')
     }
 
 
