@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Footer from '../component/Global/Footer'
-import Header from '../component/Global/Header'
 import axios from "axios"
 import { Button } from 'react-bootstrap';
 import {TextField} from '@mui/material';
@@ -50,18 +49,21 @@ useEffect(() => {
 
   return (
     <div>
-        <div>
-            <h1>Login Page 입니다.</h1>
-            <br />
-            <label>지갑 주소</label>
-            <br />
-            <input type="text" placeholder='지갑주소를 입력해 주세요…' name="publickey" onChange={handleChange}/>
-            <br />
-            <label>비밀 번호</label>
-            <br />
-            <input type="password" placeholder='비밀번호를 입력해 주세요…' name="passwd" onChange={handleChange} />
-            <br />
-            <button onClick={handleSubmit}>Login</button>
+        <div className='logincontainer'>
+          <div className='wallettitle'>
+            <h1>Wallet Address Login</h1>
+          </div>
+          <div>
+            <p className='logintext'>Wallet Address</p>
+            <TextField className='logintextfield' id="standard-basic" color="secondary" label="Please enter your Wallet address" variant="standard" type="text" name="publickey" onChange={handleChange} />
+          </div>
+          <div>
+            <p className='logintext'>Password</p>
+            <TextField className='logintextfield' id="standard-basic" color="secondary" label="Please enter your password" variant="standard" type="password" name="passwd" onChange={handleChange} />
+          </div>
+          <div className='loginbtn'>
+            <Button size="lg" variant="dark" onClick={handleSubmit}>Login</Button>
+          </div>  
         </div>
         <Footer/>
     </div>
