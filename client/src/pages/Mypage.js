@@ -14,7 +14,7 @@ const Mypage = () => {
   const identification = cookies.token
 
   const getIdentification = async () => {
-    const result = await axios.post('http://localhost:3001/blocks/mypage',{"id" : identification}).then()
+    const result = await axios.post('http://localhost:3001/blocks/mypage',{"id" : identification})
   }
 
   const getResult = async() => {

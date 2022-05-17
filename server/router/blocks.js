@@ -32,8 +32,9 @@ let postResult = [];
 router.post('/view', async (req, res) => {
   const { blockData } = req.body
   try {
-    let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
+    let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR hashs=${blockData}`)
     postResult.push(result)
+
     if(postResult[0] == undefined) {
       res.json({
         message:1
@@ -78,6 +79,8 @@ router.get("/recentblock", async(req, res) => {
   res.send(result)
 })
 
+
+
 // 금액 전송하기
 router.post('/trans', async(req, res) => {
   const {user, id} = req.body;
@@ -99,6 +102,7 @@ router.get("/recentTx", async(req, res) => {
   const [result] = await pool.query(`SELECT sendpublickey, frompublickey, rewards FROM transaction ORDER BY idx DESC LIMIT 10`)
   res.send(result)
 })
+
 
 
 // 참여 노드 추가
