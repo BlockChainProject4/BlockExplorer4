@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap';
 import {TextField} from '@mui/material';
 import './login.css'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 
 const Loginpage = ({ isLogin, setIsLogin }) => { 
   const navigate = useNavigate()
@@ -40,7 +42,13 @@ const handleSubmit = async (e) => {
     alert("Login Success!")
     navigate('/')
   } else if(reqMSG == "로그인 실패") {
-    alert("Check your WalletAddress or Password")
+      Swal.fire({
+        title: 'Error!',
+        text: 'Check your WalletAddress or Password',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+    })
+    // alert("Check your WalletAddress or Password")
   }
 }
   
