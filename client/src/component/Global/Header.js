@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineReload } from 'react-icons/ai';
+import { SiHiveBlockchain } from "react-icons/si";
+import { Button } from 'react-bootstrap';
+
 
 
 const Header = ({ isLogin, setIsLogin }) => {
@@ -17,7 +19,8 @@ const Header = ({ isLogin, setIsLogin }) => {
     const onClick = () => {
         setIsLogin(!isLogin)
         removeCookie('token')
-        window.location.reload('/')
+        alert("Logout Success!")
+        window.location.reload()
     }
 
 
@@ -26,7 +29,7 @@ const Header = ({ isLogin, setIsLogin }) => {
             <header>
             <Navbar  variant="dark">
                 <Container>
-                {/* <SiHiveBlockchain className='headericon' color='white' size={30} /> */}
+                <SiHiveBlockchain className='headericon' color='white' size={30} />
                 <Navbar.Brand className='navtext' href="/">Block Explore</Navbar.Brand>
                 <Nav className="me-auto">
                     {isLogin
@@ -41,7 +44,7 @@ const Header = ({ isLogin, setIsLogin }) => {
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/mypage">MyPage</Nav.Link>
                         <Nav.Link href="/transaction">Transaction</Nav.Link>
-                        <button onClick={onClick}>LOGOUT</button>
+                        <Button size="sm" variant="dark" onClick={onClick}>LOGOUT</Button>
                     </>
                     }
 

@@ -34,28 +34,29 @@ router.post('/view', async (req, res) => {
   try {
     let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
     postResult.push(result)
-    res.send(postResult)
+    if(postResult[0] == undefined) {
+      res.json({
+        message:1
+      })
+      return
+    } else {res.send(postResult)}
   } catch (e) {
 
   }
 })
 
 router.get('/view', (req, res) => {
-  res.send(postResult)
-  postResult = [];
+    res.send(postResult)
+    postResult = [];
+  
 })
 
 
 
 //블록 채굴
-router.get('/mine', async (req, res) => {
-  const [result] = await pool.query(`SELECT * FROM blockdata ORDER BY idx DESC LIMIT 1`);
-  res.send(result)
-})
 
 router.post('/mine', async (req, res) => {
   const {data, id} = req.body;
-  console.log(id)
   res.send(mineBlock(req.body.data.data));
   let blockContent = blocks[blocks.length-1];
     
@@ -68,6 +69,13 @@ router.post('/mine', async (req, res) => {
   catch (e) {
     console.log('New Block 저장 실패!!')
   }
+})
+
+// 최신 블록 가져오기
+
+router.get("/recentblock", async(req, res) => {
+  const [result] = await pool.query(`SELECT * FROM blockdata ORDER BY idx DESC LIMIT 1`)
+  res.send(result)
 })
 
 // 금액 전송하기
@@ -84,6 +92,12 @@ router.post('/trans', async(req, res) => {
   }    
 }
   res.json({message:2})
+})
+
+// 최근 트랜잭션
+router.get("/recentTx", async(req, res) => {
+  const [result] = await pool.query(`SELECT sendpublickey, frompublickey, rewards FROM transaction ORDER BY idx DESC LIMIT 10`)
+  res.send(result)
 })
 
 
@@ -135,7 +149,7 @@ router.use("/login", async (req, res) => {
     // res.json({})
     // res.send({heidi:publickey})
   } else {
-    res.status(404).send({
+    res.status(200).send({
       message: "로그인 실패"
     })
   }

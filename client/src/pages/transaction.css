@@ -1,0 +1,47 @@
+.tranmaincontainer {
+    width: 100%;
+    height: 600px;
+    display: flex;
+}
+
+.trancontainer {
+    width: 30%;
+    display: block;
+    float: left;
+    /* background-color: SlateGray; */
+    height: 600px;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+.tablecontainer {
+    display: block;
+    color: aliceblue;
+    width: 70%;
+    /* display: block; */
+    float: right;
+    /* background-color: blue; */
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabletitle
+{
+    display: block;
+    height: 10%;
+}
+
+.tablediv
+{
+    display: block;
+    height: 90%;
+}
+
+.trantext {
+    margin-top: 20px;
+}
+
+.tranbtn {
+    margin-top: 30px;
+}
