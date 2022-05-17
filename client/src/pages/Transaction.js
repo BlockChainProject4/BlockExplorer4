@@ -17,6 +17,7 @@ const Transaction = () => {
     const [cookies] = useCookies("");
     const identification = cookies.token;
     const [txdata, SetTxdata] = useState([]);
+
     const navigate = useNavigate();
     const [user, setUser] = useState({
         address: "",
@@ -34,11 +35,12 @@ const Transaction = () => {
         })
     }
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         axios.post("http://localhost:3001/blocks/trans", {user:user, id:identification})
         .then((res)=>{
-            console.log(res.data)
             if (res.data.message == 2) {
                 Swal.fire({
                     title: 'Error!',
@@ -72,9 +74,9 @@ const Transaction = () => {
     useEffect(() => {
         recentTransaction()
     },[])
-    console.log(txdata)
 
 return (
+    identification != null ? 
     <div>
         <div className='tranmaincontainer'>
             <div className='trancontainer'>
@@ -86,7 +88,7 @@ return (
                     <TextField className='trantextfield' value={address} id="standard-basic" color="secondary" label="Please enter your Address" variant="standard" type="text" name="address" onChange={handleChange} />
                 </div>
                 <div>
-                    <p className='trantext'>Amount of coins to be transfer</p>
+                    <p className='trantext'>Amount of coins to be transfer </p> 
                     <TextField className='trantextfield' value={amount} id="standard-basic" color="secondary" label="Enter the amount of coins to send" variant="standard" type="number" name="amount" onChange={handleChange} />
                 </div>
                 <div className='tranbtn'>
@@ -94,6 +96,40 @@ return (
                 </div>
             </div>
             <div className='tablecontainer'>
+                <div className='tabletitle'>
+                    <h2>Recent  Transaction</h2>
+                </div>
+                <div className='tablediv'>
+                    <Table striped bordered hover variant="dark" className='trantable' >
+                        <thead>
+                            <tr>
+                                <th>sendAccount</th>
+                                <th>FromAccount</th>
+                                <th>value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {txdata.map((row) => (               
+                        <tr>
+                            <td>{row.sendpublickey}</td>
+                            <td>{row.frompublickey}</td>
+                            <td>{row.rewards}</td>
+                        </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>
+
+            </div>
+        </div>
+        <Footer/>
+    </div>
+    :
+    <div>
+        <div className='tranmaincontainer'>
+            {/* <div className='trancontainer'>
+            </div> */}
+            <div className='tablecontainer2'>
                 <div className='tabletitle'>
                     <h2>Recent  Transaction</h2>
                 </div>

@@ -12,10 +12,12 @@ import Swal from 'sweetalert2'
 const CreateWallet = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({
-        passwd: ""
+        passwd: "",
+        confirmpasswd:""
     })
 
     const [passwd, setPasswd] = useState("")
+    const [confirmpasswd, setConfirmpasswd] = useState("")
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -28,6 +30,10 @@ const CreateWallet = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(passwd == "") {
+            alert("비밀번호란을 입력 해 주세요")
+            return false;
+        } else if(confirmpasswd != passwd) {
+            alert("두 비밀번호가 다릅니다.")
             Swal.fire({
                 title: 'Error!',
                 text: 'Please enter your password.',
@@ -43,9 +49,9 @@ const CreateWallet = () => {
     const acceptData = async() => {
         const response = await axios.get("http://localhost:3001/blocks/signinfo")
         Swal.fire({
-            title: '',
-            text: `Wallet Address : ${response.data[0].publickey} \n privatekey (Unable to check when moving page) : ${response.data[0].privatekey}`,
-            icon: 'error',
+            title: 'success',
+            text: `Wallet Address : ${response.data[0].publickey} privatekey (Unable to check when moving page) : ${response.data[0].privatekey}`,
+            icon: 'success',
             confirmButtonText: 'OK'
         })
         navigate("/login")
@@ -54,6 +60,7 @@ const CreateWallet = () => {
 
     useEffect(() => {
         setPasswd(user.passwd)
+        setConfirmpasswd(user.confirmpasswd)
     }, [user])
 
   return (
@@ -67,6 +74,9 @@ const CreateWallet = () => {
             </div>
             <div>
                 <TextField className='headertextfield' id="standard-basic" color="secondary" value={passwd} label="Please enter your PIN number" variant="standard" type="password" name="passwd" onChange={handleChange} />
+            </div>
+            <div>
+                <TextField className='headertextfield' id="standard-basic" color="secondary" value={confirmpasswd} label="Please enter your PIN number" variant="standard" type="password" name="confirmpasswd" onChange={handleChange} />
             </div>
             <div className='walletbtn'>
                 <Button size="lg" variant="dark" onClick={handleSubmit}>Create Wallet</Button>

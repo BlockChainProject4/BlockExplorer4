@@ -25,3 +25,10 @@ CREATE TABLE `wallet` (
     `publickey` VARCHAR(65) NOT NULL,
     `privatekey` VARCHAR(65) NOT NULL
     );
+
+CREATE TABLE `transaction` (
+	`idx` INT(11) PRIMARY KEY auto_increment, 
+    `sendpublickey` VARCHAR(65) NOT NULL,
+    `frompublickey` VARCHAR(65) NOT NULL,
+    `rewards` INT(11) NOT NULL
+    );

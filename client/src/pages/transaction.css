@@ -26,6 +26,18 @@
     align-items: center;
 }
 
+.tablecontainer2 {
+    display: block;
+    color: aliceblue;
+    width: 100%;
+    /* display: block; */
+    float: right;
+    /* background-color: blue; */
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
 .tabletitle
 {
     display: block;
