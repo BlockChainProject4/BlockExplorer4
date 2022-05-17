@@ -44,8 +44,8 @@ const Index = () => {
     const handleClick_MINE = async () => {
             if(identification == undefined) {
                 Swal.fire({
-                    title: '로그인 후 이용해 주세요!',
-                    text: 'Do you want to continue',
+                    title: 'Error!',
+                    text: '로그인 후 이용해 주세요!',
                     icon: 'error',
                     confirmButtonText: 'Cool'
                 })
