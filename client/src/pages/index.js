@@ -3,16 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import './index.css'
 // import { TextField } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
-import {React, useState, useEffect} from 'react';
+import {TextField} from '@mui/material';
+import { React, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 const Index = () => {
    
-    const [cookies] = useCookies("");
-    console.log(cookies.token)
-
-
+    const [cookies, removeCookie] = useCookies("");
+    const identification = cookies.token;
+    console.log(identification)
     const [mineCount, setMineCount] = useState()
     const [viewData, setViewData] = useState()
     const [data, setData] = useState({
@@ -41,12 +40,17 @@ const Index = () => {
     };
 
     const handleClick_MINE = async () => {
+            if(identification == undefined) {
+                alert("로그인 후 이용해 주세요")
+                return false;
+            }
             if(mineCount.value <= 0) {
                 alert("최소 1회 이상을 입력해야 채굴이 가능합니다.")         
-            } else {
+            } 
+            else {
                 for(let i = 0; i < mineCount.value; i++ ) {
                 alert(`채굴 시작! 실행횟수 : ${i + 1} / ${mineCount.value}`)
-            await axios.post('http://localhost:3001/blocks/mine', data)
+            await axios.post('http://localhost:3001/blocks/mine', {data:data, id:identification})
         //    await axios.post('http://13.125.253.189:3000//blocks/mineBlock', data)
                 alert(`채굴 ${i + 1} / ${mineCount.value}회 완료`)
             }

@@ -9,7 +9,6 @@ import './createwallet.css'
 
 
 
-
 const CreateWallet = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({
@@ -49,7 +48,6 @@ const CreateWallet = () => {
 
   return (
     <div>
-        <Header/>
         <div className='walletcontainer'>
             <div className='wallettitle'>
                 <h1>Create Wallet</h1>
