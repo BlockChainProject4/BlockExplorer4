@@ -1,0 +1,13 @@
+.walletcontainer{
+    /* display: flex; */
+    height: 3000px;
+    width: 100%;
+}
+
+.walltxt p {
+    font-size: 25px;
+}
+
+.walltxt h2 {
+    color: aliceblue;
+}

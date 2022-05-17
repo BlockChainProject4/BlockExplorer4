@@ -3,7 +3,9 @@ import Footer from '../component/Global/Footer'
 import Header from '../component/Global/Header'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie';
+import { Table } from 'react-bootstrap';
 import axios from 'axios';
+import './mypage.css'
 
 const Mypage = () => {
 
@@ -27,7 +29,6 @@ const Mypage = () => {
     setWallet(walletInfo)
     SetTansaction(transactionInfo)
 
-    console.log(transactionInfo)
 
   }
   useEffect(() => {
@@ -46,30 +47,45 @@ const Mypage = () => {
           <td>{value.frompublickey}</td>
           <td>{value.rewards}</td>
         </tr>
+        
       </>
     )})
+    
   
   return (
     wallet != null ? 
-    <div>
-        지갑주소 :  <span>{wallet.publickey}</span>
+    <div className='walletcontainer'>
+        <div className='walltxt'>
+        <p>Wallet Address : {wallet.publickey} </p> 
+        
+        <p>Retained assets : {wallet.coinamount} </p> 
         <br />
         <br />
-        보유자산 : <span>{wallet.coinamount}</span>
-        <br />
-        <br />
-        최근 거래내역 
-        <tr>
-          <table>
-          <tr>
-            <th>보낸주소</th>
-            <th>받는주소</th>
-            <th>거래금액</th>
-          </tr>
-          {td}
-          </table>
-        </tr>
-        <br />
+        <h2>
+          Recent Transaction
+        </h2>
+        </div>
+        <div>
+          <Table striped bordered hover variant="dark" size="sm">
+            <thead>
+              <tr>
+                <th>Sent Address</th>
+                <th>Receiving address</th>
+                <th>Transaction amount</th>
+              </tr>
+            </thead>
+            <tbody>
+                {td}
+            </tbody>
+          </Table>
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <Footer/>
     </div>
     :

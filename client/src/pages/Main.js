@@ -9,12 +9,11 @@ import Index from './index';
 const Main = ({ isLogin, setIsLogin }) => {
   return (
     <div >
-      
         <div className='main_container'>
           {/* <UserTradList/> */}
           <Index />
+          <Footer/>
         </div>
-      <Footer/>
     </div>
   )
 }

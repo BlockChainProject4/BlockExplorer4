@@ -32,7 +32,14 @@ let postResult = [];
 router.post('/view', async (req, res) => {
   const { blockData } = req.body
   try {
-    let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR hashs=${blockData}`)
+    // let [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR datas=${blockData} OR timestamps=${blockData} OR hashs=${blockData} OR previousHash=${blockData} OR difficulty=${blockData} OR nonce=${blockData}`)
+    let result
+    // [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData} OR hashs="${blockData}"`)
+    if(blockData.length == 64) {
+      [[result]] = await pool.query(`SELECT * FROM blockdata WHERE hashs="${blockData}"`)
+    } else {
+      [[result]] = await pool.query(`SELECT * FROM blockdata WHERE idx=${blockData}`)
+    }
     postResult.push(result)
 
     if(postResult[0] == undefined) {
