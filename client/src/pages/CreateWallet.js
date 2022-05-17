@@ -49,9 +49,9 @@ const CreateWallet = () => {
     const acceptData = async() => {
         const response = await axios.get("http://localhost:3001/blocks/signinfo")
         Swal.fire({
-            title: '',
-            text: `Wallet Address : ${response.data[0].publickey} \n privatekey (Unable to check when moving page) : ${response.data[0].privatekey}`,
-            icon: 'error',
+            title: 'success',
+            text: `Wallet Address : ${response.data[0].publickey} privatekey (Unable to check when moving page) : ${response.data[0].privatekey}`,
+            icon: 'success',
             confirmButtonText: 'OK'
         })
         navigate("/login")
